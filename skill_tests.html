@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill Tests</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-indigo-600 text-white py-6 shadow-md">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-3xl font-bold">Skill Assessment Tests</h1>
+      <p class="opacity-90 mt-1">Evaluate your talent with standardized skill assessments.</p>
+    </div>
+  </header>
+
+  <!-- Test Categories -->
+  <section class="max-w-6xl mx-auto px-4 mt-10">
+    <h2 class="text-2xl font-bold mb-5">Browse Test Categories</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Frontend Test Card -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">Frontend Development Test</h3>
+        <p class="text-sm text-gray-600">Covers React, JavaScript, HTML, CSS, and UI logic.</p>
+        <button class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onclick="openTest('frontend')">Start Test</button>
+      </div>
+
+      <!-- Backend Test Card -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">Backend Development Test</h3>
+        <p class="text-sm text-gray-600">Covers APIs, Databases, Node.js, Authentication, and Logic.</p>
+        <button class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onclick="openTest('backend')">Start Test</button>
+      </div>
+
+      <!-- UI/UX Test Card -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">UI / UX Design Test</h3>
+        <p class="text-sm text-gray-600">Covers wireframing, usability, design systems, and layout knowledge.</p>
+        <button class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onclick="openTest('uiux')">Start Test</button>
+      </div>
+
+      <!-- Writing Test Card -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">Copywriting Test</h3>
+        <p class="text-sm text-gray-600">Covers grammar, clarity, marketing tone, and creativity.</p>
+        <button class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onclick="openTest('writing')">Start Test</button>
+      </div>
+
+      <!-- Marketing Test Card -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">Digital Marketing Test</h3>
+        <p class="text-sm text-gray-600">Covers SEO, SEM, analytics, funnels, and social media strategy.</p>
+        <button class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onclick="openTest('marketing')">Start Test</button>
+      </div>
+
+      <!-- DevOps Test Card -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">DevOps / Cloud Test</h3>
+        <p class="text-sm text-gray-600">Covers CI/CD, Docker, cloud providers, and infrastructure basics.</p>
+        <button class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onclick="openTest('devops')">Start Test</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modal for Test Start -->
+  <div id="testModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-6">
+    <div class="bg-white w-full max-w-lg p-6 rounded-xl shadow">
+      <h3 id="testTitle" class="text-2xl font-semibold mb-3"></h3>
+      <p class="text-gray-700 mb-4" id="testDescription"></p>
+
+      <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full">Begin Assessment</button>
+      <button onclick="closeModal()" class="mt-3 px-4 py-2 bg-gray-300 w-full rounded hover:bg-gray-400">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    const testInfo = {
+      frontend: {
+        title: "Frontend Development Test",
+        desc: "This timed assessment evaluates your skills in JavaScript, React, responsive design, and UI problem‑solving."
+      },
+      backend: {
+        title: "Backend Development Test",
+        desc: "This test measures your understanding of APIs, databases, authentication, and backend architecture."
+      },
+      uiux: {
+        title: "UI/UX Design Test",
+        desc: "Evaluate your knowledge of usability, wireframing, user psychology, and design systems."
+      },
+      writing: {
+        title: "Copywriting Test",
+        desc: "Assess your accuracy, clarity, tone, and marketing-driven writing skills."
+      },
+      marketing: {
+        title: "Digital Marketing Test",
+        desc: "Covers analytics, SEO, funnels, strategy, and campaign optimization."
+      },
+      devops: {
+        title: "DevOps / Cloud Test",
+        desc: "Evaluate your understanding of CI/CD, cloud infrastructure, Docker, and automation."
+      }
+    };
+
+    function openTest(type) {
+      const modal = document.getElementById("testModal");
+      document.getElementById("testTitle").textContent = testInfo[type].title;
+      document.getElementById("testDescription").textContent = testInfo[type].desc;
+      modal.classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("testModal").classList.add("hidden");
+    }
+  </script>
+
+</body>
+</html>

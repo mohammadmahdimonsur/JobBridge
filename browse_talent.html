@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Talent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f7;
+      color: #2d2d2d;
+    }
+
+    .header {
+      background-color: #5a3df5;
+      padding: 40px 0;
+      text-align: center;
+      color: #fff;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .talent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .name {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      font-size: 18px;
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .skills {
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      background-color: #5a3df5;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background-color: #472fcb;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Browse Talent</div>
+
+  <div class="container">
+    <div class="talent-grid">
+
+      <div class="card">
+        <div class="name">Alex M.</div>
+        <div class="role">Frontend Developer</div>
+        <div class="skills"><strong>Skills:</strong> React, Vue, Tailwind, Figma, JavaScript</div>
+        <button class="btn">View Profile</button>
+      </div>
+
+      <div class="card">
+        <div class="name">Samantha R.</div>
+        <div class="role">Backend Engineer</div>
+        <div class="skills"><strong>Skills:</strong> Node.js, Express, MongoDB, SQL, API Architecture</div>
+        <button class="btn">View Profile</button>
+      </div>
+
+      <div class="card">
+        <div class="name">Jordan K.</div>
+        <div class="role">UI/UX Designer</div>
+        <div class="skills"><strong>Skills:</strong> Adobe XD, Figma, User Flows, Wireframing, Prototyping</div>
+        <button class="btn">View Profile</button>
+      </div>
+
+      <div class="card">
+        <div class="name">Michael T.</div>
+        <div class="role">Full Stack Developer</div>
+        <div class="skills"><strong>Skills:</strong> React, Node, Next.js, AWS, Docker</div>
+        <button class="btn">View Profile</button>
+      </div>
+
+      <div class="card">
+        <div class="name">Emily W.</div>
+        <div class="role">Marketing Specialist</div>
+        <div class="skills"><strong>Skills:</strong> SEO, Google Ads, Analytics, Branding, Social Media</div>
+        <button class="btn">View Profile</button>
+      </div>
+
+      <div class="card">
+        <div class="name">Chris P.</div>
+        <div class="role">DevOps Engineer</div>
+        <div class="skills"><strong>Skills:</strong> Kubernetes, CI/CD, AWS, Docker, Terraform</div>
+        <button class="btn">View Profile</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

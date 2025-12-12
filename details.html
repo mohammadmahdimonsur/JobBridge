@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+ <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Job Application Form</h2>
+
+        <div class="job-title-box" id="jobTitleBox">Fill up the Assesment Form</div>
+
+        <form id="applicationForm">
+
+            <input type="hidden" id="jobTitle">
+
+            <label>First Name</label>
+            <input type="text" id="firstName" required>
+
+            <label>Last Name</label>
+            <input type="text" id="lastName" required>
+
+            <label>Email</label>
+            <input type="email" id="email" required>
+
+            <label>Contact Number</label>
+            <input type="text" id="contact" required>
+
+            <label>Upload CV</label>
+            <input type="file" id="cv" accept=".pdf,.doc,.docx" required>
+
+            <!-- Upload Status -->
+            <div id="uploadStatus" class="upload-status">Uploading...</div>
+
+            <!-- Progress Bar -->
+            <div id="progressContainer" class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+
+        <p class="success" id="successMsg">Application submitted successfully!</p>
+    </div>
+
+    <script>
+        // Get job title from URL
+        const params = new URLSearchParams(window.location.search);
+        const job = params.get("job") || "Fill up the Assesment Form";
+
+        document.getElementById("jobTitleBox").innerText = "" + job;
+        document.getElementById("jobTitle").value = job;
+
+        // Elements for animation
+        const cvInput = document.getElementById("cv");
+        const progressContainer = document.getElementById("progressContainer");
+        const progressBar = document.getElementById("progressBar");
+        const uploadStatus = document.getElementById("uploadStatus");
+
+        cvInput.addEventListener("change", () => {
+            if (cvInput.files.length === 0) return;
+
+            progressContainer.style.display = "block";
+            uploadStatus.style.display = "block";
+            uploadStatus.innerText = "Uploading...";
+
+            let progress = 0;
+
+            // Simulated upload animation
+            const interval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = progress + "%";
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    uploadStatus.innerText = "Upload Complete!";
+                }
+            }, 100); // speed of upload animation
+        });
+
+        // Form submit
+        const form = document.getElementById("applicationForm");
+        const successMsg = document.getElementById("successMsg");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            successMsg.style.display = "block";
+            form.reset();
+            progressContainer.style.display = "none";
+            uploadStatus.style.display = "none";
+            progressBar.style.width = "0%";
+
+            setTimeout(() => {
+                successMsg.style.display = "none";
+            }, 3000);
+        });
+    </script>
+
+</body>
+</html>
