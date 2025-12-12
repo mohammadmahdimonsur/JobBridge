@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - JobBridge | Get Support & Answers</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Your Header/Footer CSS -->
+    <link rel="stylesheet" href="header_footer.css">
+    <!-- Help Center CSS (inline as in your original) -->
+    <style>
+        /* ============================================
+           VARIABLES & ROOT
+           ============================================ */
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #06B6D4;
+            --accent: #8B5CF6;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --light-bg: #FFFFFF;
+            --light-bg-alt: #F8FAFC;
+            --light-border: #E2E8F0;
+            --dark-text: #1E293B;
+            --gray-text: #64748B;
+            --light-text: #94A3B8;
+            --gradient-primary: linear-gradient(135deg, #4F46E5, #8B5CF6);
+            --gradient-light: linear-gradient(135deg, #F8FAFC, #FFFFFF);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ============================================
+           GLOBAL STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Adjust for fixed navbar */
+        .help-hero {
+            padding-top: 180px; /* Increased to account for fixed navbar */
+        }
+
+        /* ============================================
+           HELP CENTER HERO
+           ============================================ */
+        .help-hero {
+            padding: 180px 0 80px; /* Increased top padding */
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: var(--gradient-light);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .help-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(79, 70, 229, 0.1);
+            border: 2px solid rgba(79, 70, 229, 0.2);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .help-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .help-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        /* Search Bar */
+        .help-search {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+            z-index: 100;
+        }
+
+        .help-search input {
+            width: 100%;
+            height: 60px;
+            padding: 0 60px 0 24px;
+            background: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--light-border);
+            border-radius: 50px;
+            color: var(--dark-text);
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .help-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1), var(--shadow-xl);
+        }
+
+        .help-search input::placeholder {
+            color: var(--light-text);
+        }
+
+        .help-search button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .help-search button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Search Suggestions */
+        .search-suggestions {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            z-index: 101;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1rem 0;
+        }
+
+        .search-suggestions.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .suggestion-item {
+            padding: 14px 24px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--light-border);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .suggestion-item:hover {
+            background: var(--light-bg-alt);
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .suggestion-highlight {
+            background: rgba(255, 230, 0, 0.3);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .suggestion-category {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin-left: auto;
+            background: var(--light-bg-alt);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* Popular Searches */
+        .popular-searches {
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
+            position: relative;
+            z-index: 10;
+        }
+
+        .popular-title {
+            font-size: 1rem;
+            color: var(--gray-text);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .popular-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .popular-tag {
+            background: white;
+            border: 2px solid var(--light-border);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: var(--gray-text);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .popular-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 0.8s ease 1s backwards;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            font-weight: 600;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--gray-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .scroll-indicator:hover {
+            color: var(--primary);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ============================================
+           HELP SECTIONS
+           ============================================ */
+        .help-section {
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: var(--dark-text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .help-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+
+        .help-card {
+            background: white;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--light-border);
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .help-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .help-card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .help-card:hover .help-card-icon {
+            transform: scale(1.1);
+        }
+
+        .help-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .help-card-description {
+            color: var(--gray-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .help-card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .help-card-link:hover {
+            gap: 12px;
+            color: var(--primary-dark);
+        }
+
+        /* ============================================
+           FEATURED GUIDES SECTION
+           ============================================ */
+        .featured-guides {
+            background: var(--light-bg-alt);
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--light-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .guide-image {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+
+        .guide-content {
+            padding: 2rem;
+        }
+
+        .guide-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .guide-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .guide-excerpt {
+            color: var(--gray-text);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-meta {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-read-time {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guide-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .guide-link:hover {
+            gap: 12px;
+            color: var(--primary-dark);
+        }
+
+        /* ============================================
+           FAQ SECTION
+           ============================================ */
+        .faq-section {
+            background: white;
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--light-bg-alt);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            border: 2px solid var(--light-border);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 2rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .faq-toggle {
+            transition: var(--transition);
+        }
+
+        /* FAQ Search */
+        .faq-search {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .faq-search input {
+            width: 100%;
+            height: 56px;
+            padding: 0 56px 0 24px;
+            background: white;
+            border: 2px solid var(--light-border);
+            border-radius: 50px;
+            color: var(--dark-text);
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .faq-search button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact-section {
+            padding: 80px 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+
+        .contact-card {
+            background: white;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid var(--light-border);
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .contact-card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .contact-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card-description {
+            color: var(--gray-text);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .contact-card-link:hover {
+            gap: 12px;
+            color: var(--primary-dark);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 992px) {
+            .help-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .help-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .help-hero {
+                padding: 160px 0 60px; /* Adjusted for mobile */
+                min-height: 80vh;
+            }
+            
+            .help-title {
+                font-size: 2rem;
+            }
+            
+            .help-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .help-card {
+                padding: 2rem;
+            }
+            
+            .faq-question {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .faq-answer {
+                padding: 0 1.5rem;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 0 1.5rem 1.25rem;
+            }
+            
+            .quick-stats {
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar (From your header) -->
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-bridge"></i>
+                    </div>
+                    <span class="logo-text">JobBridge</span>
+                </a>
+
+                <div class="d-none d-lg-flex gap-4">
+                    <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                    <a href="find_talent.html" class="nav-link">Find Talent</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="About.html" class="nav-link">About Us</a>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="bi bi-moon-fill" id="themeIcon"></i>
+                    </button>
+
+                    <div class="d-none d-md-flex gap-2">
+                        <button onclick="sign()" class="btn-shiny btn-shiny-secondary">Sign In</button>
+                        <button onclick="sign()" class="btn-shiny btn-shiny-primary">Get Started</button>
+                    </div>
+
+                    <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                        <i class="bi bi-list" style="font-size: 1.5rem; color: var(--text-primary);"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" style="background: var(--bg-primary);">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" style="color: var(--text-primary);">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex flex-column gap-3">
+                <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                <a href="find_talent.html" class="nav-link">Find Talent</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="About.html" class="nav-link">About Us</a>
+                <hr>
+
+                <button onclick="sign()" class="btn-shiny btn-shiny-primary w-100">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Center Hero -->
+    <section class="help-hero" id="hero">
+        <div class="container">
+            <div class="help-badge">
+                <i class="fas fa-life-ring"></i>
+                <span>Support & Resources</span>
+            </div>
+            <h1 class="help-title">How can we help you today?</h1>
+            <p class="help-subtitle">Find instant answers to your questions, explore our knowledge base, or get personalized support from our team</p>
+            
+            <!-- Search Bar -->
+            <div class="help-search">
+                <input type="text" placeholder="Search for help articles, topics, or issues..." id="helpSearchInput">
+                <button><i class="fas fa-search"></i></button>
+                <div class="search-suggestions" id="searchSuggestions">
+                    <!-- Suggestions will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Help Articles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Issue Resolution Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2 min</div>
+                    <div class="stat-label">Avg. Response Time</div>
+                </div>
+            </div>
+            
+            <!-- Popular Searches -->
+            <div class="popular-searches">
+                <div class="popular-title">Popular searches:</div>
+                <div class="popular-tags">
+                    <div class="popular-tag" data-search="create account">Create account</div>
+                    <div class="popular-tag" data-search="payment issues">Payment issues</div>
+                    <div class="popular-tag" data-search="profile verification">Profile verification</div>
+                    <div class="popular-tag" data-search="job posting">Post a job</div>
+                    <div class="popular-tag" data-search="resume tips">Resume tips</div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator" onclick="scrollToSection('help-categories')">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Categories -->
+    <section class="help-section" id="help-categories">
+        <div class="container">
+            <h2 class="section-title">Browse Help Categories</h2>
+            <p class="section-subtitle">Find help organized by topics and user types</p>
+            <div class="help-cards">
+                <!-- For Job Seekers -->
+                <div class="help-card" id="job-seekers-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="help-card-title">For Job Seekers</h3>
+                    <p class="help-card-description">Find jobs, optimize your profile, prepare for interviews, and navigate the hiring process.</p>
+                    <a href="#job-seekers-guide" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- For Employers -->
+                <div class="help-card" id="employers-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="help-card-title">For Employers</h3>
+                    <p class="help-card-description">Post jobs, find talent, manage hiring process, and utilize recruitment tools.</p>
+                    <a href="#employers-guide" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- For Freelancers -->
+                <div class="help-card" id="freelancers-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="help-card-title">For Freelancers</h3>
+                    <p class="help-card-description">Find projects, set up your portfolio, manage clients, and get paid securely.</p>
+                    <a href="#freelancers-guide" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Account & Settings -->
+                <div class="help-card" id="account-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="help-card-title">Account & Settings</h3>
+                    <p class="help-card-description">Manage your account, update preferences, and configure notification settings.</p>
+                    <a href="#account-settings" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Payments & Billing -->
+                <div class="help-card" id="payments-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="help-card-title">Payments & Billing</h3>
+                    <p class="help-card-description">Set up payment methods, understand billing, and resolve payment issues.</p>
+                    <a href="#payments-billing" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Safety & Trust -->
+                <div class="help-card" id="safety-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="help-card-title">Safety & Trust</h3>
+                    <p class="help-card-description">Learn about our safety measures, reporting tools, and community guidelines.</p>
+                    <a href="#safety-trust" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Mobile App -->
+                <div class="help-card" id="mobile-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="help-card-title">Mobile App</h3>
+                    <p class="help-card-description">Get the most out of our mobile applications with guides and troubleshooting.</p>
+                    <a href="#mobile-guide" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Platform Features -->
+                <div class="help-card" id="features-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="help-card-title">Platform Features</h3>
+                    <p class="help-card-description">Learn how to use advanced features like analytics, automation, and integrations.</p>
+                    <a href="#features-guide" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Community & Events -->
+                <div class="help-card" id="community-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="help-card-title">Community & Events</h3>
+                    <p class="help-card-description">Join our community, participate in events, and network with professionals.</p>
+                    <a href="#community-events" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Troubleshooting -->
+                <div class="help-card" id="troubleshooting-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="help-card-title">Troubleshooting</h3>
+                    <p class="help-card-description">Find solutions to common technical issues and platform problems.</p>
+                    <a href="#troubleshooting-guide" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- NEW: Security & Privacy -->
+                <div class="help-card" id="security-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="help-card-title">Security & Privacy</h3>
+                    <p class="help-card-description">Learn about data protection, privacy settings, and security best practices.</p>
+                    <a href="#security-privacy" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- NEW: API & Integrations -->
+                <div class="help-card" id="api-card">
+                    <div class="help-card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="help-card-title">API & Integrations</h3>
+                    <p class="help-card-description">Developer resources, API documentation, and third-party integrations.</p>
+                    <a href="#api-integrations" class="help-card-link">
+                        Explore Resources
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Guides -->
+    <section class="featured-guides" id="featured-guides">
+        <div class="container">
+            <h2 class="section-title">Featured Guides & Tutorials</h2>
+            <p class="section-subtitle">Step-by-step guides to help you get the most out of JobBridge</p>
+            <div class="guide-grid">
+                <!-- Guide 1 -->
+                <div class="guide-card">
+                    <div class="guide-image">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="guide-content">
+                        <div class="guide-badge">
+                            <i class="fas fa-star"></i>
+                            Beginner's Guide
+                        </div>
+                        <h3 class="guide-title">Getting Started with JobBridge</h3>
+                        <p class="guide-excerpt">A complete beginner's guide to setting up your profile, finding opportunities, and succeeding on our platform.</p>
+                        <div class="guide-meta">
+                            <div class="guide-read-time">
+                                <i class="far fa-clock"></i>
+                                8 min read
+                            </div>
+                        </div>
+                        <a href="#" class="guide-link">
+                            Read Guide
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Guide 2 -->
+                <div class="guide-card">
+                    <div class="guide-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="guide-content">
+                        <div class="guide-badge">
+                            <i class="fas fa-chart-bar"></i>
+                            Advanced
+                        </div>
+                        <h3 class="guide-title">Optimizing Your Profile for Success</h3>
+                        <p class="guide-excerpt">Learn advanced techniques to make your profile stand out and attract better opportunities.</p>
+                        <div class="guide-meta">
+                            <div class="guide-read-time">
+                                <i class="far fa-clock"></i>
+                                12 min read
+                            </div>
+                        </div>
+                        <a href="#" class="guide-link">
+                            Read Guide
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Guide 3 -->
+                <div class="guide-card">
+                    <div class="guide-image">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="guide-content">
+                        <div class="guide-badge">
+                            <i class="fas fa-briefcase"></i>
+                            For Employers
+                        </div>
+                        <h3 class="guide-title">Hiring Best Practices</h3>
+                        <p class="guide-excerpt">A comprehensive guide to finding and hiring the best talent on our platform efficiently.</p>
+                        <div class="guide-meta">
+                            <div class="guide-read-time">
+                                <i class="far fa-clock"></i>
+                                15 min read
+                            </div>
+                        </div>
+                        <a href="#" class="guide-link">
+                            Read Guide
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Quick answers to common questions</p>
+            
+            <!-- FAQ Search -->
+            <div class="faq-search">
+                <input type="text" placeholder="Search within FAQs..." id="faqSearchInput">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item" data-faq="account">
+                    <div class="faq-question">
+                        How do I create an account on JobBridge?
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Creating an account on JobBridge is simple. Click the "Sign Up" button in the top right corner, choose whether you're a job seeker, employer, or freelancer, and follow the prompts to set up your profile. You can sign up using your email, Google account, or LinkedIn profile.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item" data-faq="employers">
+                    <div class="faq-question">
+                        How can employers post job listings?
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Employers can post jobs by creating an employer account, then clicking "Post a Job" from their dashboard. You'll need to provide job details, requirements, and set your budget or salary range. All job postings are reviewed to ensure quality before going live.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item" data-faq="payments">
+                    <div class="faq-question">
+                        What payment methods are supported?
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>JobBridge supports various payment methods including credit/debit cards, PayPal, bank transfers, and digital wallets. For freelancers, we offer secure payment protection and multiple withdrawal options with transparent fee structures.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item" data-faq="safety">
+                    <div class="faq-question">
+                        How does JobBridge ensure safety and prevent scams?
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We employ multiple safety measures including profile verification, secure messaging, payment protection, and a dedicated trust and safety team. Users can report suspicious activity, and we continuously monitor for fraudulent behavior to maintain a safe platform.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item" data-faq="mobile">
+                    <div class="faq-question">
+                        Can I use JobBridge on mobile devices?
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! JobBridge is fully responsive and works seamlessly on mobile devices. We also offer dedicated iOS and Android apps with all the features of our web platform, including job applications, messaging, and profile management.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="faq-item" data-faq="technical">
+                    <div class="faq-question">
+                        What should I do if I encounter a technical issue?
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you're experiencing technical issues, first try refreshing the page and clearing your browser cache. If the problem persists, contact our support team through the "Contact Us" section with details about the issue, your device, and browser information for faster resolution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Still Need Help?</h2>
+            <p class="section-subtitle">Get in touch with our support team through multiple channels</p>
+            <div class="contact-cards">
+                <!-- Contact Card 1 -->
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="contact-card-title">Live Chat</h3>
+                    <p class="contact-card-description">Get instant help from our support team</p>
+                    <a href="#" class="contact-card-link">
+                        Start Chat
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Contact Card 2 -->
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-card-title">Email Support</h3>
+                    <p class="contact-card-description">Send us a message and we'll respond within 24 hours</p>
+                    <a href="#" class="contact-card-link">
+                        Send Email
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Contact Card 3 -->
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="contact-card-title">Phone Support</h3>
+                    <p class="contact-card-description">Speak directly with a support representative</p>
+                    <a href="#" class="contact-card-link">
+                        Call Now
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Contact Card 4 -->
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="contact-card-title">Community Forum</h3>
+                    <p class="contact-card-description">Get help from other JobBridge users</p>
+                    <a href="#" class="contact-card-link">
+                        Visit Forum
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (From your footer) -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <a href="#" style="text-decoration: none">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <i class="fas fa-bridge"></i>
+                            </div>
+                            <span class="footer-logo-text">JobBridge</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">
+                        Connecting talented professionals with amazing opportunities worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://x.com/" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/mohammadmahdimonsur?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://facebook.com/" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="https://github.com/mohammadmahdimonsur" class="social-link"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Clients</h3>
+                    <ul class="footer-links">
+                        <li><a href="post_a_job.html"><i class="bi bi-chevron-right"></i>Post a Job</a></li>
+                        <li><a href="browse_talent.html"><i class="bi bi-chevron-right"></i>Browse Talent</a></li>
+                        <li><a href="enterprise_solutions.html"><i class="bi bi-chevron-right"></i>Enterprise Solutions</a></li>
+                        <li><a href="hire_developers.html"><i class="bi bi-chevron-right"></i>Hire Developers</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Talents</h3>
+                    <ul class="footer-links">
+                        <li><a href="find_jobs.html"><i class="bi bi-chevron-right"></i>Find Jobs</a></li>
+                        <li><a href="get_started.html"><i class="bi bi-chevron-right"></i>Create Profile</a></li>
+                        <li><a href="career_resources.html"><i class="bi bi-chevron-right"></i>Career Resources</a></li>
+                        <li><a href="skill_tests.html"><i class="bi bi-chevron-right"></i>Skill Tests</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html"><i class="bi bi-chevron-right"></i>Blog</a></li>
+                        <li><a href="webinars.html"><i class="bi bi-chevron-right"></i>Webinars</a></li>
+                        <li><a href="research_reports.html"><i class="bi bi-chevron-right"></i>Research Reports</a></li>
+                        <li><a href="industry_insights.html"><i class="bi bi-chevron-right"></i>Industry Insights</a></li>
+                        <li><a href="events.html"><i class="bi bi-chevron-right"></i>Events</a></li>
+                    </ul>
+                </div>
+                <!-- New Platform Section -->
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="career.html"><i class="bi bi-chevron-right"></i>Career</a></li>
+                        <li><a href="help_center.html"><i class="bi bi-chevron-right"></i>Help Center</a></li>
+                        <li><a href="community.html"><i class="bi bi-chevron-right"></i>Community</a></li>
+                        <li><a href="contact_us.html"><i class="bi bi-chevron-right"></i>Contact Us</a></li>
+                        <li><a href="about.html"><i class="bi bi-chevron-right"></i>About JobBridge</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enhanced Help Center JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all features
+            initFAQAccordion();
+            initSearchFunctionality();
+            initPopularTags();
+            initFAQSearch();
+            initCardNavigation();
+            initSmoothScrolling();
+            
+            // Header sign function
+            window.sign = function() {
+                window.location.href = "get_started.html";
+            };
+        });
+
+        // FAQ Accordion Functionality
+        function initFAQAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        }
+
+        // Search functionality with suggestions
+        function initSearchFunctionality() {
+            const searchInput = document.getElementById('helpSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            if (!searchInput || !searchSuggestions) return;
+            
+            // Define help articles with section mapping
+            const helpArticles = [
+                {
+                    id: 'job-seekers-card',
+                    title: "For Job Seekers",
+                    category: "Help Categories",
+                    icon: "fas fa-user-tie",
+                    description: "Resources for finding jobs and career growth"
+                },
+                {
+                    id: 'employers-card',
+                    title: "For Employers",
+                    category: "Help Categories",
+                    icon: "fas fa-building",
+                    description: "Tools for hiring and talent management"
+                },
+                {
+                    id: 'freelancers-card',
+                    title: "For Freelancers",
+                    category: "Help Categories",
+                    icon: "fas fa-laptop-code",
+                    description: "Project finding and client management"
+                },
+                {
+                    id: 'account-card',
+                    title: "Account & Settings",
+                    category: "Help Categories",
+                    icon: "fas fa-cog",
+                    description: "Account management and preferences"
+                },
+                {
+                    id: 'payments-card',
+                    title: "Payments & Billing",
+                    category: "Help Categories",
+                    icon: "fas fa-credit-card",
+                    description: "Payment methods and billing information"
+                },
+                {
+                    id: 'safety-card',
+                    title: "Safety & Trust",
+                    category: "Help Categories",
+                    icon: "fas fa-shield-alt",
+                    description: "Safety measures and community guidelines"
+                },
+                {
+                    id: 'faq',
+                    title: "Frequently Asked Questions",
+                    category: "FAQ Section",
+                    icon: "fas fa-question-circle",
+                    description: "Common questions and answers"
+                },
+                {
+                    id: 'featured-guides',
+                    title: "Featured Guides",
+                    category: "Guides Section",
+                    icon: "fas fa-book",
+                    description: "Step-by-step tutorials and guides"
+                },
+                {
+                    id: 'contact',
+                    title: "Contact Support",
+                    category: "Contact Section",
+                    icon: "fas fa-headset",
+                    description: "Get help from our support team"
+                }
+            ];
+
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                
+                if (searchTerm.length > 0) {
+                    const matchingArticles = findMatchingArticles(searchTerm, helpArticles);
+                    showSearchSuggestions(matchingArticles, searchTerm);
+                    searchSuggestions.classList.add('active');
+                } else {
+                    searchSuggestions.classList.remove('active');
+                }
+            });
+            
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.help-search')) {
+                    searchSuggestions.classList.remove('active');
+                }
+            });
+            
+            // Handle search submission
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const searchTerm = this.value.trim();
+                    if (searchTerm) {
+                        performSearch(searchTerm, helpArticles);
+                    }
+                }
+            });
+        }
+
+        // Find matching articles
+        function findMatchingArticles(searchTerm, articles) {
+            const matches = [];
+            
+            articles.forEach(article => {
+                const titleMatch = article.title.toLowerCase().includes(searchTerm);
+                const categoryMatch = article.category.toLowerCase().includes(searchTerm);
+                const descriptionMatch = article.description.toLowerCase().includes(searchTerm);
+                
+                if (titleMatch || categoryMatch || descriptionMatch) {
+                    matches.push({
+                        ...article,
+                        matchType: titleMatch ? 'title' : categoryMatch ? 'category' : 'description'
+                    });
+                }
+            });
+            
+            return matches.slice(0, 6); // Limit to 6 suggestions
+        }
+
+        // Show search suggestions
+        function showSearchSuggestions(matches, searchTerm) {
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            if (!searchSuggestions) return;
+            
+            searchSuggestions.innerHTML = '';
+            
+            if (matches.length === 0) {
+                const noResults = document.createElement('div');
+                noResults.className = 'suggestion-item';
+                noResults.innerHTML = `
+                    <div class="suggestion-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">No results found</div>
+                        <div style="font-size: 0.85rem; color: var(--light-text);">Try different keywords</div>
+                    </div>
+                `;
+                searchSuggestions.appendChild(noResults);
+            } else {
+                matches.forEach(match => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.className = 'suggestion-item';
+                    suggestionItem.setAttribute('data-target', match.id);
+                    
+                    const highlightedTitle = highlightText(match.title, searchTerm);
+                    suggestionItem.innerHTML = `
+                        <div class="suggestion-icon">
+                            <i class="${match.icon}"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">${highlightedTitle}</div>
+                            <div style="font-size: 0.85rem; color: var(--light-text);">
+                                ${match.description}
+                            </div>
+                        </div>
+                        <div class="suggestion-category">${match.category}</div>
+                    `;
+                    
+                    suggestionItem.addEventListener('click', () => {
+                        navigateToSection(match.id);
+                        searchSuggestions.classList.remove('active');
+                    });
+                    
+                    searchSuggestions.appendChild(suggestionItem);
+                });
+            }
+        }
+
+        // Highlight text in search results
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="suggestion-highlight">$1</span>');
+        }
+
+        // Navigate to section
+        function navigateToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Highlight the section briefly
+                element.style.boxShadow = '0 0 0 3px var(--primary)';
+                setTimeout(() => {
+                    element.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+
+        // Perform search
+        function performSearch(searchTerm, articles) {
+            const matchingArticles = findMatchingArticles(searchTerm, articles);
+            if (matchingArticles.length > 0) {
+                navigateToSection(matchingArticles[0].id);
+            }
+        }
+
+        // Popular tags functionality
+        function initPopularTags() {
+            const popularTags = document.querySelectorAll('.popular-tag');
+            popularTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const searchTerm = this.getAttribute('data-search');
+                    const searchInput = document.getElementById('helpSearchInput');
+                    if (searchInput) {
+                        searchInput.value = searchTerm;
+                        searchInput.focus();
+                        searchInput.dispatchEvent(new Event('input'));
+                    }
+                });
+            });
+        }
+
+        // FAQ Search functionality
+        function initFAQSearch() {
+            const faqSearchInput = document.getElementById('faqSearchInput');
+            if (!faqSearchInput) return;
+            
+            faqSearchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                const faqItems = document.querySelectorAll('.faq-item');
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        
+                        // Highlight matching text
+                        if (searchTerm) {
+                            const questionElement = item.querySelector('.faq-question');
+                            const originalText = questionElement.textContent;
+                            const highlighted = originalText.replace(
+                                new RegExp(`(${searchTerm})`, 'gi'),
+                                '<span style="background: rgba(255, 230, 0, 0.3); padding: 2px 4px; border-radius: 4px;">$1</span>'
+                            );
+                            questionElement.innerHTML = highlighted + '<div class="faq-toggle"><i class="fas fa-chevron-down"></i></div>';
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Card navigation
+        function initCardNavigation() {
+            const helpCards = document.querySelectorAll('.help-card');
+            helpCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.help-card-link')) {
+                        const link = this.querySelector('.help-card-link');
+                        if (link && link.href.includes('#')) {
+                            e.preventDefault();
+                            const targetId = link.getAttribute('href').replace('#', '');
+                            navigateToSection(targetId);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Smooth scrolling
+        function initSmoothScrolling() {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function() {
+                    scrollToSection('help-categories');
+                });
+            }
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    </script>
+</body>
+</html>

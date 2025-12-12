@@ -1,0 +1,2312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 Global Talent Trends Report | JobBridge</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            /* Color Palette */
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --secondary-light: #34d399;
+            --secondary-dark: #059669;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --accent-dark: #d97706;
+            
+            /* Neutral Colors */
+            --white: #ffffff;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --border-light: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            
+            /* Transitions */
+            --transition-fast: all 0.2s ease;
+            --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Borders */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+        }
+
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 80px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-fast);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        section {
+            padding: var(--space-3xl) 0;
+            position: relative;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-gradient {
+            background: var(--gradient-primary);
+        }
+
+        .shadow-hover {
+            transition: var(--transition-normal);
+        }
+
+        .shadow-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+        .animate-delay-5 { animation-delay: 0.5s; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            padding: var(--space-md) 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: var(--space-sm) 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* ===== REPORT HEADER ===== */
+        .report-header {
+            background: var(--white);
+            padding: var(--space-3xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        .report-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: var(--space-xl);
+            backdrop-filter: blur(10px);
+        }
+
+        .report-title {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-lg);
+            max-width: 900px;
+        }
+
+        .report-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin-bottom: var(--space-2xl);
+            line-height: 1.7;
+        }
+
+        .report-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--text-secondary);
+        }
+
+        .meta-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        /* ===== REPORT NAVIGATION ===== */
+        .report-nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-scroller {
+            display: flex;
+            overflow-x: auto;
+            padding: var(--space-md) 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .nav-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-item {
+            padding: var(--space-sm) var(--space-xl);
+            color: var(--text-secondary);
+            font-weight: 500;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition-fast);
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
+            border-radius: var(--radius-sm);
+        }
+
+        .nav-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: var(--space-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-md);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--space-md);
+        }
+
+        .section-number::before,
+        .section-number::after {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--border-light);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== KEY FINDINGS ===== */
+        .key-finding-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            border: 1px solid var(--border-light);
+            transition: var(--transition-normal);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-finding-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+            transform-origin: left;
+        }
+
+        .key-finding-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .finding-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+            font-size: 1.5rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .finding-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .icon-primary { background: var(--gradient-primary); }
+        .icon-secondary { background: var(--gradient-secondary); }
+        .icon-accent { background: var(--gradient-accent); }
+        .icon-purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .icon-pink { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .icon-teal { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+
+        .finding-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--space-sm);
+            line-height: 1;
+        }
+
+        .finding-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+
+        .finding-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== CHARTS ===== */
+        .chart-container {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            border: 1px solid var(--border-light);
+            margin-bottom: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .chart-btn {
+            padding: var(--space-sm) var(--space-lg);
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .chart-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .chart-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        /* ===== DATA TABLE ===== */
+        .data-table-container {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            margin: var(--space-2xl) 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table thead {
+            background: rgba(79, 70, 229, 0.05);
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .data-table th {
+            padding: var(--space-lg);
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+        }
+
+        .data-table tbody tr {
+            transition: var(--transition-fast);
+        }
+
+        .data-table tbody tr:hover {
+            background: rgba(79, 70, 229, 0.03);
+        }
+
+        .trend-up {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .trend-down {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        /* ===== METHODOLOGY ===== */
+        .methodology-step {
+            display: flex;
+            gap: var(--space-xl);
+            padding: var(--space-xl);
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+            margin-bottom: var(--space-md);
+            transition: var(--transition-normal);
+            align-items: flex-start;
+        }
+
+        .methodology-step:hover {
+            transform: translateX(8px);
+            border-color: var(--primary);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-number::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* ===== DOWNLOAD SECTION ===== */
+        .download-section {
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.05) 0%, transparent 60%),
+                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 60%);
+        }
+
+        .download-card {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-3xl);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-2xl);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .download-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-2xl);
+            font-size: 2.5rem;
+            color: var(--white);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .download-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-lg);
+        }
+
+        .download-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            background: var(--white);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition-normal);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-check {
+            text-align: left;
+            margin-bottom: var(--space-xl);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid var(--border-light);
+            padding: var(--space-3xl) 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--light-bg);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition-fast);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .report-title {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .download-card {
+                padding: var(--space-2xl);
+            }
+            
+            .download-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .navbar {
+                padding: var(--space-sm) 0;
+            }
+            
+            .report-header {
+                padding: var(--space-2xl) 0;
+            }
+            
+            .report-title {
+                font-size: 2.2rem;
+            }
+            
+            .report-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .report-meta {
+                gap: var(--space-lg);
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .methodology-step {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+            
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .chart-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .chart-controls {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .report-title {
+                font-size: 1.8rem;
+            }
+            
+            .report-meta {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+            
+            .header-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .key-finding-card {
+                padding: var(--space-xl);
+            }
+            
+            .finding-number {
+                font-size: 2.5rem;
+            }
+            
+            .download-card {
+                padding: var(--space-xl);
+            }
+            
+            .download-title {
+                font-size: 1.8rem;
+            }
+            
+            .download-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: var(--shadow-xl);
+            padding: var(--space-2xl);
+            transition: var(--transition-normal);
+            z-index: 2000;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .mobile-nav-link {
+            padding: var(--space-md);
+            color: var(--text-primary);
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            .report-nav,
+            .download-section,
+            .footer,
+            .btn,
+            .mobile-menu-btn,
+            .nav-buttons {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                padding-top: 0 !important;
+            }
+            
+            .report-header,
+            section {
+                padding: 20px 0 !important;
+                break-inside: avoid;
+            }
+            
+            .key-finding-card,
+            .chart-container,
+            .data-table-container {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                break-inside: avoid;
+            }
+            
+            .download-card {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bridge"></i>
+                </div>
+                <span>JobBridge</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                <a href="find_talent.html" class="nav-link">Find Talent</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="About.html" class="nav-link">About Us</a>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary">Sign In</button>
+                <button class="btn btn-primary">Get Started</button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bridge"></i>
+                </div>
+                <span>JobBridge</span>
+            </div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="find_jobs.html" class="mobile-nav-link">Find Jobs</a>
+            <a href="find_talent.html" class="mobile-nav-link">Find Talent</a>
+            <a href="resources.html" class="mobile-nav-link">Resources</a>
+            <a href="about.html" class="mobile-nav-link">About Us</a>
+            <hr>
+            <button class="btn btn-primary w-100">Get Started</button>
+        </nav>
+    </div>
+
+    <!-- Report Header -->
+    <header class="report-header">
+        <div class="container">
+            <div class="text-center fade-in">
+                <div class="report-badge slide-up">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Research Report 2024</span>
+                </div>
+                <h1 class="report-title text-gradient slide-up animate-delay-1">
+                    2024 Global Talent Trends Report
+                </h1>
+                <p class="report-subtitle slide-up animate-delay-2">
+                    An in-depth analysis of emerging workforce trends, AI impact on hiring, 
+                    remote work evolution, and the future of skills development across 50+ countries.
+                </p>
+                
+                <div class="report-meta justify-content-center slide-up animate-delay-3">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Published: December 2023</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Sample: 15,000+ Professionals</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-globe-americas"></i>
+                        <span>Countries: 52</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-industry"></i>
+                        <span>Industries: 12</span>
+                    </div>
+                </div>
+                
+                <div class="header-actions slide-up animate-delay-4">
+                    <a href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        Download Full Report
+                    </a>
+                    <button onclick="window.print()" class="btn btn-outline">
+                        <i class="fas fa-print"></i>
+                        Print Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Report Navigation -->
+    <nav class="report-nav">
+        <div class="container">
+            <div class="nav-scroller">
+                <a href="#executive-summary" class="nav-item active">
+                    <span class="nav-number">01</span>
+                    Executive Summary
+                </a>
+                <a href="#key-findings" class="nav-item">
+                    <span class="nav-number">02</span>
+                    Key Findings
+                </a>
+                <a href="#market-trends" class="nav-item">
+                    <span class="nav-number">03</span>
+                    Market Trends
+                </a>
+                <a href="#skills-analysis" class="nav-item">
+                    <span class="nav-number">04</span>
+                    Skills Analysis
+                </a>
+                <a href="#ai-impact" class="nav-item">
+                    <span class="nav-number">05</span>
+                    AI Impact
+                </a>
+                <a href="#methodology" class="nav-item">
+                    <span class="nav-number">06</span>
+                    Methodology
+                </a>
+                <a href="#download" class="nav-item">
+                    <span class="nav-number">07</span>
+                    Download
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Executive Summary -->
+    <section id="executive-summary" class="section">
+        <div class="container">
+            <div class="section-header slide-up">
+                <div class="section-number">Section 01</div>
+                <h2 class="section-title text-gradient">Executive Summary</h2>
+                <p class="section-subtitle">
+                    This comprehensive report analyzes the major shifts in global talent markets, 
+                    drawing insights from over 15,000 professionals across 52 countries.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="chart-container slide-up">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Global Hiring Trends 2020-2024</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active" data-period="yearly">Yearly</button>
+                                <button class="chart-btn" data-period="quarterly">Quarterly</button>
+                                <button class="chart-btn" data-period="monthly">Monthly</button>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="hiringTrendsChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="content slide-up animate-delay-1">
+                        <h3>Major Industry Shifts</h3>
+                        <p>
+                            The global talent landscape has undergone significant transformation post-pandemic, 
+                            with remote work becoming a permanent fixture in 78% of organizations. Our research 
+                            indicates a 142% increase in hybrid work adoption since 2020.
+                        </p>
+                        <p>
+                            Artificial Intelligence is reshaping hiring processes, with 65% of companies 
+                            now using AI-powered tools for candidate screening and matching. However, 
+                            human oversight remains crucial for ethical hiring practices.
+                        </p>
+                        <h4 class="mt-4">Key Transformations:</h4>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i><strong>Skills-based hiring</strong> increased by 89% replacing traditional degree requirements</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i><strong>Remote-first policies</strong> adopted by 43% of tech companies globally</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i><strong>AI integration</strong> in recruitment processes reached 65% penetration</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i><strong>Diversity initiatives</strong> showing 34% improvement in board representation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up">
+                        <div class="finding-icon icon-primary">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="finding-number text-gradient">42%</div>
+                        <h3 class="finding-title">Remote Work Adoption</h3>
+                        <p class="finding-description">
+                            Percentage of global workforce now working remotely at least 3 days per week, 
+                            up from 17% in 2019.
+                        </p>
+                    </div>
+                    
+                    <div class="key-finding-card shadow-hover slide-up animate-delay-1 mt-4">
+                        <div class="finding-icon icon-secondary">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="finding-number text-gradient">3.2x</div>
+                        <h3 class="finding-title">AI Adoption Growth</h3>
+                        <p class="finding-description">
+                            Increase in AI tools usage for talent acquisition since 2021, 
+                            with 85% satisfaction rate among HR professionals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Findings -->
+    <section id="key-findings" class="section" style="background: var(--light-bg);">
+        <div class="container">
+            <div class="section-header slide-up">
+                <div class="section-number">Section 02</div>
+                <h2 class="section-title text-gradient">Key Findings</h2>
+                <p class="section-subtitle">
+                    Discover the most significant insights from our global research across 12 major industries.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up">
+                        <div class="finding-icon icon-secondary">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="finding-number text-gradient">89%</div>
+                        <h3 class="finding-title">Skills Over Degrees</h3>
+                        <p class="finding-description">
+                            Companies prioritizing skills-based hiring over traditional degree requirements, 
+                            leading to 34% more diverse hiring.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up animate-delay-1">
+                        <div class="finding-icon icon-accent">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="finding-number text-gradient">67%</div>
+                        <h3 class="finding-title">Gig Economy Growth</h3>
+                        <p class="finding-description">
+                            Professionals engaged in freelance or contract work, 
+                            indicating shift towards flexible employment models.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up animate-delay-2">
+                        <div class="finding-icon icon-purple">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="finding-number text-gradient">2.5x</div>
+                        <h3 class="finding-title">Upskilling Investment</h3>
+                        <p class="finding-description">
+                            Increase in corporate investment in employee training programs 
+                            compared to pre-pandemic levels.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up animate-delay-3">
+                        <div class="finding-icon icon-pink">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="finding-number text-gradient">+34%</div>
+                        <h3 class="finding-title">DEI Progress</h3>
+                        <p class="finding-description">
+                            Improvement in diversity metrics across executive teams, 
+                            with particular growth in tech and finance sectors.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up animate-delay-4">
+                        <div class="finding-icon icon-teal">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="finding-number text-gradient">48h</div>
+                        <h3 class="finding-title">Time-to-Hire Reduction</h3>
+                        <p class="finding-description">
+                            Average reduction in hiring time through AI-powered matching 
+                            and automated screening processes.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up animate-delay-5">
+                        <div class="finding-icon icon-primary">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="finding-number text-gradient">92%</div>
+                        <h3 class="finding-title">Candidate Satisfaction</h3>
+                        <p class="finding-description">
+                            Applicants reporting positive experience with modern, 
+                            tech-enabled hiring processes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data-table-container slide-up">
+                <div class="chart-header">
+                    <h3 class="chart-title">Industry Growth Comparison (2022-2024)</h3>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Industry</th>
+                            <th>Job Growth</th>
+                            <th>Salary Increase</th>
+                            <th>Remote Adoption</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-code me-2 text-primary"></i>Technology</td>
+                            <td>+28%</td>
+                            <td>+22%</td>
+                            <td>85%</td>
+                            <td class="trend-up"><i class="fas fa-arrow-up"></i> Strong</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-heartbeat me-2 text-secondary"></i>Healthcare</td>
+                            <td>+34%</td>
+                            <td>+18%</td>
+                            <td>42%</td>
+                            <td class="trend-up"><i class="fas fa-arrow-up"></i> Strong</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-chart-bar me-2 text-accent"></i>Finance</td>
+                            <td>+19%</td>
+                            <td>+15%</td>
+                            <td>67%</td>
+                            <td class="trend-up"><i class="fas fa-arrow-up"></i> Moderate</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-shopping-cart me-2 text-purple"></i>Retail</td>
+                            <td>+12%</td>
+                            <td>+8%</td>
+                            <td>23%</td>
+                            <td class="trend-up"><i class="fas fa-arrow-up"></i> Steady</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-industry me-2 text-teal"></i>Manufacturing</td>
+                            <td>+15%</td>
+                            <td>+12%</td>
+                            <td>18%</td>
+                            <td class="trend-up"><i class="fas fa-arrow-up"></i> Steady</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Trends -->
+    <section id="market-trends" class="section">
+        <div class="container">
+            <div class="section-header slide-up">
+                <div class="section-number">Section 03</div>
+                <h2 class="section-title text-gradient">Market Trends Analysis</h2>
+                <p class="section-subtitle">
+                    Regional insights and emerging patterns in global talent markets.
+                </p>
+            </div>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-lg-6">
+                    <div class="chart-container slide-up">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Regional Talent Demand (Q4 2023)</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="regionalChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="chart-container slide-up animate-delay-1">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Salary Growth by Experience Level</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="salaryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="content slide-up animate-delay-2">
+                        <h3>Geographic Insights</h3>
+                        <p>
+                            North America leads in remote work adoption (58%) followed by Europe (47%) 
+                            and Asia-Pacific (32%). However, APAC shows the fastest growth rate at 156% 
+                            year-over-year.
+                        </p>
+                        
+                        <h4 class="mt-4">Regional Highlights:</h4>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="methodology-step mb-3">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h5>North America</h5>
+                                        <p>Highest demand for AI/ML specialists with 42% salary premium for remote roles</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="methodology-step mb-3">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h5>Europe</h5>
+                                        <p>GDPR compliance driving tech hiring with 35% growth in green tech roles</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h5>Asia-Pacific</h5>
+                                        <p>Fastest growing tech hubs with 156% remote work growth year-over-year</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Impact -->
+    <section id="ai-impact" class="section" style="background: var(--light-bg);">
+        <div class="container">
+            <div class="section-header slide-up">
+                <div class="section-number">Section 05</div>
+                <h2 class="section-title text-gradient">AI Impact on Hiring</h2>
+                <p class="section-subtitle">
+                    How artificial intelligence is transforming talent acquisition and workforce management.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="chart-container slide-up">
+                        <div class="chart-header">
+                            <h3 class="chart-title">AI Adoption in Recruitment</h3>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="aiAdoptionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="content slide-up animate-delay-1">
+                        <h3>Transformative Technologies</h3>
+                        <p>
+                            Artificial Intelligence has become the most significant disruptor in talent 
+                            acquisition, with 72% of HR leaders reporting improved hiring outcomes through 
+                            AI implementation.
+                        </p>
+                        
+                        <div class="methodology-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Intelligent Screening</h4>
+                                <p>
+                                    AI algorithms analyze resumes and profiles with 95% accuracy, 
+                                    reducing screening time by 75%.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Predictive Analytics</h4>
+                                <p>
+                                    Machine learning models predict candidate success and retention 
+                                    with 82% accuracy.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Bias Reduction</h4>
+                                <p>
+                                    AI tools help identify and eliminate unconscious bias, 
+                                    increasing diversity by 34%.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section id="methodology" class="section">
+        <div class="container">
+            <div class="section-header slide-up">
+                <div class="section-number">Section 06</div>
+                <h2 class="section-title text-gradient">Research Methodology</h2>
+                <p class="section-subtitle">
+                    Detailed overview of our research approach, data collection, and analysis methods.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="content slide-up">
+                        <h3>Research Framework</h3>
+                        <p>
+                            This report is based on comprehensive primary and secondary research conducted 
+                            between January and November 2023. Our methodology ensures statistical significance 
+                            and regional representation.
+                        </p>
+                        
+                        <div class="methodology-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Survey Design & Distribution</h4>
+                                <p>
+                                    Developed and distributed surveys to 15,000+ professionals across 52 countries. 
+                                    Survey questions covered hiring practices, workplace preferences, skills development, 
+                                    and technology adoption.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Data Collection</h4>
+                                <p>
+                                    Collected data through online surveys, in-depth interviews with 200+ HR leaders, 
+                                    and analysis of 500,000+ job postings across major platforms.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Statistical Analysis</h4>
+                                <p>
+                                    Employed advanced statistical methods including regression analysis, 
+                                    cluster analysis, and predictive modeling to identify trends and patterns.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Validation & Quality Control</h4>
+                                <p>
+                                    Implemented data validation protocols, outlier detection, and peer review 
+                                    process to ensure accuracy and reliability of findings.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="key-finding-card shadow-hover slide-up">
+                        <div class="finding-icon icon-purple">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="finding-number text-gradient">15K+</div>
+                        <h3 class="finding-title">Survey Responses</h3>
+                        <p class="finding-description">
+                            Comprehensive primary data collected from professionals across 
+                            experience levels and industries.
+                        </p>
+                    </div>
+                    
+                    <div class="key-finding-card shadow-hover slide-up animate-delay-1 mt-4">
+                        <div class="finding-icon icon-teal">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="finding-number text-gradient">95%</div>
+                        <h3 class="finding-title">Confidence Level</h3>
+                        <p class="finding-description">
+                            Statistical confidence interval for all reported metrics, 
+                            ensuring reliable and actionable insights.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section section">
+        <div class="container">
+            <div class="download-card slide-up">
+                <div class="download-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h2 class="download-title text-gradient">Download Full Report</h2>
+                <p class="download-subtitle">
+                    Get the complete 85-page report with detailed analysis, 
+                    additional charts, and industry-specific recommendations.
+                </p>
+                
+                <form id="downloadForm" class="download-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Work Email" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Company" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <select class="form-control" required>
+                                    <option value="">Select Industry</option>
+                                    <option>Technology</option>
+                                    <option>Finance</option>
+                                    <option>Healthcare</option>
+                                    <option>Manufacturing</option>
+                                    <option>Retail</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="subscribe" checked>
+                                <label class="form-check-label" for="subscribe">
+                                    Subscribe to future research updates
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-download"></i>
+                                Download Full Report (PDF)
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-bridge"></i>
+                        </div>
+                        <span>JobBridge</span>
+                    </div>
+                    <p class="footer-description">
+                        Connecting talented professionals with amazing opportunities worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://x.com/" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/mohammadmahdimonsur?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://facebook.com/" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="https://github.com/mohammadmahdimonsur" class="social-link"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Clients</h3>
+                    <ul class="footer-links">
+                        <li><a href="post_a_job.html"><i class="bi bi-chevron-right"></i>Post a Job</a></li>
+                        <li><a href="browse_talent.html"><i class="bi bi-chevron-right"></i>Browse Talent</a></li>
+                        <li><a href="enterprise_solutions.html"><i class="bi bi-chevron-right"></i>Enterprise Solutions</a></li>
+                        <li><a href="hire_developers.html"><i class="bi bi-chevron-right"></i>Hire Developers</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Talents</h3>
+                    <ul class="footer-links">
+                        <li><a href="find_jobs.html"><i class="bi bi-chevron-right"></i>Find Jobs</a></li>
+                        <li><a href="get_started.html"><i class="bi bi-chevron-right"></i>Create Profile</a></li>
+                        <li><a href="career_resources.html"><i class="bi bi-chevron-right"></i>Career Resources</a></li>
+                        <li><a href="skill_tests.html"><i class="bi bi-chevron-right"></i>Skill Tests</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html"><i class="bi bi-chevron-right"></i>Blog</a></li>
+                        <li><a href="webinars.html"><i class="bi bi-chevron-right"></i>Webinars</a></li>
+                        <li><a href="research_reports.html"><i class="bi bi-chevron-right"></i>Research Reports</a></li>
+                        <li><a href="industry_insights.html"><i class="bi bi-chevron-right"></i>Industry Insights</a></li>
+                        <li><a href="events.html"><i class="bi bi-chevron-right"></i>Events</a></li>
+                    </ul>
+                </div>
+                <!-- New Platform Section -->
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="career.html"><i class="bi bi-chevron-right"></i>Career</a></li>
+                        <li><a href="help_center.html"><i class="bi bi-chevron-right"></i>Help Center</a></li>
+                        <li><a href="community.html"><i class="bi bi-chevron-right"></i>Community</a></li>
+                        <li><a href="contact_us.html"><i class="bi bi-chevron-right"></i>Contact Us</a></li>
+                        <li><a href="about.html"><i class="bi bi-chevron-right"></i>About JobBridge</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Charts
+        function initializeCharts() {
+            // Hiring Trends Chart
+            const hiringCtx = document.getElementById('hiringTrendsChart').getContext('2d');
+            new Chart(hiringCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Remote Hires',
+                        data: [15, 42, 68, 75, 78],
+                        borderColor: '#4f46e5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Hybrid Hires',
+                        data: [5, 22, 45, 58, 65],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'On-site Hires',
+                        data: [80, 36, 25, 18, 15],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                drawBorder: false
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Regional Chart
+            const regionalCtx = document.getElementById('regionalChart').getContext('2d');
+            new Chart(regionalCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['North America', 'Europe', 'Asia-Pacific', 'Latin America', 'Middle East'],
+                    datasets: [{
+                        label: 'Talent Demand Index',
+                        data: [85, 72, 68, 45, 38],
+                        backgroundColor: [
+                            'rgba(79, 70, 229, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(236, 72, 153, 0.8)',
+                            'rgba(139, 92, 246, 0.8)'
+                        ],
+                        borderColor: [
+                            '#4f46e5',
+                            '#10b981',
+                            '#f59e0b',
+                            '#ec4899',
+                            '#8b5cf6'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Salary Chart
+            const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+            new Chart(salaryCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Entry Level', 'Mid Level', 'Senior', 'Lead', 'Executive'],
+                    datasets: [{
+                        label: 'Salary Growth %',
+                        data: [12, 18, 25, 32, 28],
+                        backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                        borderColor: '#4f46e5',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#4f46e5',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // AI Adoption Chart
+            const aiCtx = document.getElementById('aiAdoptionChart').getContext('2d');
+            new Chart(aiCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['AI Screening', 'Chatbot Interviews', 'Predictive Analytics', 'Skill Matching', 'Bias Detection'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            '#4f46e5',
+                            '#10b981',
+                            '#f59e0b',
+                            '#ec4899',
+                            '#8b5cf6'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Scroll Animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.slide-up, .fade-in, .scale-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        }
+
+        // Navigation Highlighting
+        function highlightNavigation() {
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').substring(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Chart Controls
+        document.querySelectorAll('.chart-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const parent = this.closest('.chart-controls');
+                parent.querySelectorAll('.chart-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Download Form
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const downloadBtn = this.querySelector('.btn-primary');
+            const originalHTML = downloadBtn.innerHTML;
+            
+            // Show loading state
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+            downloadBtn.disabled = true;
+            
+            // Simulate download
+            setTimeout(() => {
+                downloadBtn.innerHTML = '<i class="fas fa-check"></i> Download Started!';
+                downloadBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    downloadBtn.innerHTML = originalHTML;
+                    downloadBtn.disabled = false;
+                    downloadBtn.style.background = '';
+                    
+                    // Show success message
+                    alert('Thank you! The report has been sent to your email.');
+                }, 3000);
+            }, 1500);
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+        }
+        
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            initializeCharts();
+            animateOnScroll();
+            
+            // Set initial animation states
+            document.querySelectorAll('.slide-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+            });
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+            });
+            
+            document.querySelectorAll('.scale-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'scale(0.9)';
+            });
+        });
+
+        // Update on scroll
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+            highlightNavigation();
+        });
+
+        // Print functionality
+        document.querySelector('[onclick="window.print()"]')?.addEventListener('click', () => {
+            window.print();
+        });
+    </script>
+</body>
+</html>

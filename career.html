@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Development - JobBridge</title>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="header_footer.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        /* Premium Career Page Styles */
+        :root {
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --accent-success: #10b981;
+            --accent-warning: #f59e0b;
+            --accent-info: #3b82f6;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-800: #1f2937;
+        }
+        
+        /* Hero Section - Clean & Premium */
+        .career-hero-section {
+            background: linear-gradient(135deg, var(--gray-50) 0%, #ffffff 100%);
+            padding: 160px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        [data-theme="dark"] .career-hero-section {
+            background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 100%);
+        }
+        
+        .career-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23667eea' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--gray-800);
+            margin-bottom: 1.5rem;
+        }
+        
+        [data-theme="dark"] .hero-title {
+            color: #ffffff;
+        }
+        
+        .hero-accent {
+            color: var(--accent-primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-accent::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--accent-primary);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        [data-theme="dark"] .hero-subtitle {
+            color: #9ca3af;
+        }
+        
+        /* Stats Section - Premium Cards */
+        .career-stats-section {
+            padding: 80px 0;
+            background: #ffffff;
+            position: relative;
+            z-index: 2;
+            margin-top: -50px;
+        }
+        
+        [data-theme="dark"] .career-stats-section {
+            background: var(--bg-secondary);
+        }
+        
+        .stat-card-premium {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+        
+        [data-theme="dark"] .stat-card-premium {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-card-premium:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        }
+        
+        .stat-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--accent-primary);
+            font-size: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+        
+        [data-theme="dark"] .stat-number {
+            color: #ffffff;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Career Paths - Modern Grid */
+        .career-paths-section {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+        
+        [data-theme="dark"] .career-paths-section {
+            background: #0d0d1a;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 1rem;
+        }
+        
+        [data-theme="dark"] .section-title {
+            color: #ffffff;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .path-card-modern {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            height: 100%;
+            position: relative;
+        }
+        
+        [data-theme="dark"] .path-card-modern {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .path-card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .path-card-header {
+            padding: 2.5rem 2rem 1.5rem;
+            position: relative;
+        }
+        
+        .path-icon-bg {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+        
+        .path-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 1rem;
+        }
+        
+        [data-theme="dark"] .path-card-title {
+            color: #ffffff;
+        }
+        
+        .path-card-body {
+            padding: 0 2rem 2.5rem;
+        }
+        
+        .skill-tags-modern {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag-modern {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--gray-800);
+            transition: all 0.2s ease;
+        }
+        
+        [data-theme="dark"] .skill-tag-modern {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        
+        .skill-tag-modern:hover {
+            background: var(--accent-primary);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+        
+        /* Interactive Quiz - Premium Design */
+        .career-quiz-section {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+        
+        [data-theme="dark"] .career-quiz-section {
+            background: var(--bg-secondary);
+        }
+        
+        .quiz-container-modern {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+        }
+        
+        [data-theme="dark"] .quiz-container-modern {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .quiz-step-modern {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .quiz-question {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 2rem;
+        }
+        
+        [data-theme="dark"] .quiz-question {
+            color: #ffffff;
+        }
+        
+        .quiz-option-modern {
+            background: var(--gray-50);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        [data-theme="dark"] .quiz-option-modern {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .quiz-option-modern:hover {
+            border-color: var(--accent-primary);
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .quiz-option-modern.selected {
+            border-color: var(--accent-primary);
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .option-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option-modern.selected .option-check {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+        
+        .option-check i {
+            font-size: 0.75rem;
+            color: white;
+            opacity: 0;
+        }
+        
+        .quiz-option-modern.selected .option-check i {
+            opacity: 1;
+        }
+        
+        /* Learning Resources - Premium Cards */
+        .learning-resources-section {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+        
+        [data-theme="dark"] .learning-resources-section {
+            background: #0d0d1a;
+        }
+        
+        .resource-card-modern {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            height: 100%;
+        }
+        
+        [data-theme="dark"] .resource-card-modern {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .resource-card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-header {
+            padding: 2rem;
+            background: rgba(102, 126, 234, 0.05);
+            text-align: center;
+        }
+        
+        .resource-icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .resource-badge-modern {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .badge-premium {
+            background: linear-gradient(135deg, var(--accent-warning), #f97316);
+        }
+        
+        .badge-popular {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        
+        .badge-new {
+            background: linear-gradient(135deg, var(--accent-success), #059669);
+        }
+        
+        /* Skill Matcher - Modern Interface */
+        .skill-matcher-section {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+        
+        [data-theme="dark"] .skill-matcher-section {
+            background: var(--bg-secondary);
+        }
+        
+        .matcher-container {
+            background: var(--gray-50);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        [data-theme="dark"] .matcher-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-input-modern {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .skill-input-modern input {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #d1d5db;
+            background: #ffffff;
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+        
+        [data-theme="dark"] .skill-input-modern input {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+        
+        .skill-input-modern input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .skill-pill-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 25px;
+            margin: 0.375rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        
+        .skill-pill-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .match-visualization {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .match-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-primary) var(--match-percent, 0%) 0%, #e5e7eb 0% 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .match-inner {
+            width: 150px;
+            height: 150px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-count {
+            animation: countUp 1s ease-out forwards;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .quiz-container-modern {
+                padding: 2rem;
+            }
+            
+            .match-visualization {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .match-inner {
+                width: 110px;
+                height: 110px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-bridge"></i>
+                    </div>
+                    <span class="logo-text">JobBridge</span>
+                </a>
+
+                <div class="d-none d-lg-flex gap-4">
+                    <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                    <a href="find_talent.html" class="nav-link">Find Talent</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="About.html" class="nav-link">About Us</a>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="bi bi-moon-fill" id="themeIcon"></i>
+                    </button>
+
+                    <div class="d-none d-md-flex gap-2">
+                        <button onclick="sign()" class="btn-shiny btn-shiny-secondary">Sign In</button>
+                        <button onclick="sign()" class="btn-shiny btn-shiny-primary">Get Started</button>
+                    </div>
+
+                    <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                        <i class="bi bi-list" style="font-size: 1.5rem; color: var(--text-primary);"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" style="background: var(--bg-primary);">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" style="color: var(--text-primary);">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex flex-column gap-3">
+                <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                <a href="find_talent.html" class="nav-link">Find Talent</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="About.html" class="nav-link active">About Us</a>
+                <hr>
+                <button onclick="sign()" class="btn-shiny btn-shiny-primary w-100">
+                    Get Started
+                </button>
+                <script>
+                    function sign() {
+                        window.location.href = "get_started.html";
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="career-hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="hero-title animate-count">
+                        Elevate Your <span class="hero-accent">Career Journey</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Discover your professional path, master in-demand skills, and connect with opportunities that align with your ambitions. Your next career milestone starts here.
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        <button class="btn-shiny btn-shiny-primary" onclick="scrollToSection('career-paths')">
+                            Explore Career Paths
+                        </button>
+                        <button class="btn-shiny btn-shiny-secondary" onclick="scrollToSection('career-quiz')">
+                            Take Career Assessment
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Career Growth" 
+                             class="img-fluid rounded-3 shadow-lg"
+                             style="transform: perspective(1000px) rotateY(-10deg); transition: transform 0.5s ease;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="career-stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card-premium">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-number" data-count="25430">0</div>
+                        <p class="stat-label">Professionals Trained</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card-premium">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-number" data-count="94">0%</div>
+                        <p class="stat-label">Job Placement Rate</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card-premium">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-number" data-count="1250">0+</div>
+                        <p class="stat-label">Partner Companies</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card-premium">
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-number" data-count="42">0%</div>
+                        <p class="stat-label">Avg. Salary Increase</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Paths Section -->
+    <section class="career-paths-section" id="career-paths">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Career Paths</h2>
+                <p class="section-subtitle">Discover in-demand career paths and the skills needed to succeed in today's market</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="path-card-modern">
+                        <div class="path-card-header">
+                            <div class="path-icon-bg" style="background: var(--accent-primary);">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="path-card-title">Technology & Development</h3>
+                        </div>
+                        <div class="path-card-body">
+                            <p class="text-muted mb-3">Build the future with cutting-edge technical skills in high demand across industries.</p>
+                            <div class="skill-tags-modern">
+                                <span class="skill-tag-modern">JavaScript</span>
+                                <span class="skill-tag-modern">Python</span>
+                                <span class="skill-tag-modern">React</span>
+                                <span class="skill-tag-modern">Cloud</span>
+                                <span class="skill-tag-modern">DevOps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="path-card-modern">
+                        <div class="path-card-header">
+                            <div class="path-icon-bg" style="background: var(--accent-success);">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3 class="path-card-title">Business Analytics</h3>
+                        </div>
+                        <div class="path-card-body">
+                            <p class="text-muted mb-3">Transform data into insights and drive strategic decisions for business growth.</p>
+                            <div class="skill-tags-modern">
+                                <span class="skill-tag-modern">SQL</span>
+                                <span class="skill-tag-modern">Tableau</span>
+                                <span class="skill-tag-modern">Excel</span>
+                                <span class="skill-tag-modern">Statistics</span>
+                                <span class="skill-tag-modern">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="path-card-modern">
+                        <div class="path-card-header">
+                            <div class="path-icon-bg" style="background: var(--accent-warning);">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3 class="path-card-title">Product Design</h3>
+                        </div>
+                        <div class="path-card-body">
+                            <p class="text-muted mb-3">Create intuitive and beautiful user experiences that solve real problems.</p>
+                            <div class="skill-tags-modern">
+                                <span class="skill-tag-modern">Figma</span>
+                                <span class="skill-tag-modern">UI/UX</span>
+                                <span class="skill-tag-modern">Prototyping</span>
+                                <span class="skill-tag-modern">User Research</span>
+                                <span class="skill-tag-modern">Wireframing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="path-card-modern">
+                        <div class="path-card-header">
+                            <div class="path-icon-bg" style="background: var(--accent-info);">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="path-card-title">Leadership & Management</h3>
+                        </div>
+                        <div class="path-card-body">
+                            <p class="text-muted mb-3">Develop the skills to lead teams, drive projects, and manage organizations.</p>
+                            <div class="skill-tags-modern">
+                                <span class="skill-tag-modern">Leadership</span>
+                                <span class="skill-tag-modern">Strategy</span>
+                                <span class="skill-tag-modern">Project Mgmt</span>
+                                <span class="skill-tag-modern">Communication</span>
+                                <span class="skill-tag-modern">Team Building</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Quiz Section -->
+    <section class="career-quiz-section" id="career-quiz">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Career Assessment</h2>
+                <p class="section-subtitle">Take our quick assessment to discover career paths that match your strengths and interests</p>
+            </div>
+            
+            <div class="quiz-container-modern">
+                <div class="quiz-step-modern active" id="quizStep1">
+                    <h3 class="quiz-question">What type of work environment energizes you the most?</h3>
+                    <div class="quiz-option-modern" data-value="structured">
+                        <div class="option-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Structured & Collaborative</h5>
+                            <p class="mb-0 text-muted">I thrive in organized settings with clear processes and team collaboration</p>
+                        </div>
+                    </div>
+                    <div class="quiz-option-modern" data-value="flexible">
+                        <div class="option-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Flexible & Independent</h5>
+                            <p class="mb-0 text-muted">I prefer autonomy and flexibility to structure my own work approach</p>
+                        </div>
+                    </div>
+                    <div class="quiz-option-modern" data-value="dynamic">
+                        <div class="option-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Dynamic & Fast-paced</h5>
+                            <p class="mb-0 text-muted">I enjoy rapidly changing environments with new challenges daily</p>
+                        </div>
+                    </div>
+                    <div class="quiz-option-modern" data-value="creative">
+                        <div class="option-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Creative & Innovative</h5>
+                            <p class="mb-0 text-muted">I need space for creativity, experimentation, and innovation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn-shiny btn-shiny-secondary" id="quizPrevBtn" style="display: none;">
+                        <i class="fas fa-arrow-left me-2"></i>Previous
+                    </button>
+                    <button class="btn-shiny btn-shiny-primary" id="quizNextBtn">
+                        Continue<i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section class="learning-resources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Learning Resources</h2>
+                <p class="section-subtitle">Access premium learning materials curated by industry experts</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="resource-card-modern">
+                        <div class="position-relative">
+                            <div class="resource-header">
+                                <div class="resource-icon-circle">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h4 class="mb-2">Video Courses</h4>
+                                <p class="text-muted mb-0">Interactive learning with expert instructors</p>
+                            </div>
+                            <span class="resource-badge-modern badge-premium">PREMIUM</span>
+                        </div>
+                        <div class="p-3">
+                            <ul class="list-unstyled mb-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>200+ courses available</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Certificate upon completion</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Lifetime access</li>
+                            </ul>
+                            <button class="btn-shiny btn-shiny-primary w-100">
+                                Browse Courses
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="resource-card-modern">
+                        <div class="position-relative">
+                            <div class="resource-header">
+                                <div class="resource-icon-circle">
+                                    <i class="fas fa-file-certificate"></i>
+                                </div>
+                                <h4 class="mb-2">Certifications</h4>
+                                <p class="text-muted mb-0">Industry-recognized credentials</p>
+                            </div>
+                            <span class="resource-badge-modern badge-popular">POPULAR</span>
+                        </div>
+                        <div class="p-3">
+                            <ul class="list-unstyled mb-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>12+ certification tracks</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Exam preparation included</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Career guidance</li>
+                            </ul>
+                            <button class="btn-shiny btn-shiny-primary w-100">
+                                View Certifications
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="resource-card-modern">
+                        <div class="position-relative">
+                            <div class="resource-header">
+                                <div class="resource-icon-circle">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <h4 class="mb-2">Mentorship</h4>
+                                <p class="text-muted mb-0">1:1 guidance from industry experts</p>
+                            </div>
+                            <span class="resource-badge-modern badge-new">NEW</span>
+                        </div>
+                        <div class="p-3">
+                            <ul class="list-unstyled mb-3">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>500+ experienced mentors</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Personalized career plans</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Interview preparation</li>
+                            </ul>
+                            <button class="btn-shiny btn-shiny-primary w-100">
+                                Find a Mentor
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Matcher Section -->
+    <section class="skill-matcher-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skill Match Analyzer</h2>
+                <p class="section-subtitle">See how your skills align with in-demand job roles</p>
+            </div>
+            
+            <div class="matcher-container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="mb-4">
+                            <div class="skill-input-modern">
+                                <input type="text" 
+                                       id="skillInput" 
+                                       placeholder="Add a skill (e.g., JavaScript, Project Management)"
+                                       onkeypress="handleSkillKeyPress(event)">
+                            </div>
+                            <div id="skillsContainer" class="mb-4">
+                                <span class="skill-pill-modern">
+                                    Communication
+                                    <span class="remove-skill" onclick="removeSkillPill(this)">×</span>
+                                </span>
+                                <span class="skill-pill-modern">
+                                    Problem Solving
+                                    <span class="remove-skill" onclick="removeSkillPill(this)">×</span>
+                                </span>
+                                <span class="skill-pill-modern">
+                                    Teamwork
+                                    <span class="remove-skill" onclick="removeSkillPill(this)">×</span>
+                                </span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">Select Target Role</label>
+                                <select class="form-select" id="targetRole" onchange="updateSkillMatch()">
+                                    <option value="frontend">Frontend Developer</option>
+                                    <option value="backend">Backend Developer</option>
+                                    <option value="fullstack">Full Stack Developer</option>
+                                    <option value="pm">Project Manager</option>
+                                    <option value="designer">Product Designer</option>
+                                    <option value="analyst">Data Analyst</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="text-center">
+                            <div class="match-visualization">
+                                <div class="match-circle">
+                                    <div class="match-inner">
+                                        <span id="matchPercentage">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="mb-2">Skill Match Score</h4>
+                            <p class="text-muted mb-4">Based on your skills and selected role</p>
+                            <button class="btn-shiny btn-shiny-primary" onclick="showMatchingJobs()">
+                                View Matching Opportunities
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Updated with Platform section) -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <a href="#" style="text-decoration: none">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <i class="fas fa-bridge"></i>
+                            </div>
+                            <span class="footer-logo-text">JobBridge</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">
+                        Connecting talented professionals with amazing opportunities worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://x.com/" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="https://linkedin.com/mohammadmahdimonsur" class="social-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://facebook.com/" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="https://github.com/mohammadmahdimonsur" class="social-link"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Clients</h3>
+                    <ul class="footer-links">
+                        <li><a href="post_a_job.html"><i class="bi bi-chevron-right"></i>Post a Job</a></li>
+                        <li><a href="browse_talent.html"><i class="bi bi-chevron-right"></i>Browse Talent</a></li>
+                        <li><a href="enterprise_solutions.html"><i class="bi bi-chevron-right"></i>Enterprise Solutions</a></li>
+                        <li><a href="hire_developers.html"><i class="bi bi-chevron-right"></i>Hire Developers</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Talents</h3>
+                    <ul class="footer-links">
+                        <li><a href="find_jobs.html"><i class="bi bi-chevron-right"></i>Find Jobs</a></li>
+                        <li><a href="get_started.html"><i class="bi bi-chevron-right"></i>Create Profile</a></li>
+                        <li><a href="career_resources.html"><i class="bi bi-chevron-right"></i>Career Resources</a></li>
+                        <li><a href="skill_tests.html"><i class="bi bi-chevron-right"></i>Skill Tests</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html"><i class="bi bi-chevron-right"></i>Blog</a></li>
+                        <li><a href="webinars.html"><i class="bi bi-chevron-right"></i>Webinars</a></li>
+                        <li><a href="research_reports.html"><i class="bi bi-chevron-right"></i>Research Reports</a></li>
+                        <li><a href="industry_insights.html"><i class="bi bi-chevron-right"></i>Industry Insights</a></li>
+                        <li><a href="events.html"><i class="bi bi-chevron-right"></i>Events</a></li>
+                    </ul>
+                </div>
+                <!-- New Platform Section -->
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="career.html"><i class="bi bi-chevron-right"></i>Career</a></li>
+                        <li><a href="help_center.html"><i class="bi bi-chevron-right"></i>Help Center</a></li>
+                        <li><a href="community.html"><i class="bi bi-chevron-right"></i>Community</a></li>
+                        <li><a href="contact_us.html"><i class="bi bi-chevron-right"></i>Contact Us</a></li>
+                        <li><a href="about.html"><i class="bi bi-chevron-right"></i>About JobBridge</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        themeIcon.className = currentTheme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current) + (target.toString().includes('%') ? '%' : '');
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target + (target.toString().includes('%') ? '%' : '');
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+        
+        // Initialize counters
+        setTimeout(animateCounters, 500);
+        
+        // Career Quiz Logic
+        let quizStep = 1;
+        const totalQuizSteps = 3;
+        const quizSelections = {};
+        
+        // Quiz option selection
+        document.querySelectorAll('.quiz-option-modern').forEach(option => {
+            option.addEventListener('click', function() {
+                const step = this.closest('.quiz-step-modern');
+                step.querySelectorAll('.quiz-option-modern').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                
+                const questionId = step.id;
+                quizSelections[questionId] = this.getAttribute('data-value');
+            });
+        });
+        
+        // Quiz navigation
+        document.getElementById('quizNextBtn').addEventListener('click', function() {
+            const currentStep = document.querySelector('.quiz-step-modern.active');
+            const selectedOption = currentStep.querySelector('.quiz-option-modern.selected');
+            
+            if (!selectedOption) {
+                alert('Please select an option to continue');
+                return;
+            }
+            
+            if (quizStep < totalQuizSteps) {
+                currentStep.classList.remove('active');
+                quizStep++;
+                document.getElementById('quizStep' + quizStep).classList.add('active');
+                document.getElementById('quizPrevBtn').style.display = 'block';
+                
+                if (quizStep === totalQuizSteps) {
+                    this.innerHTML = 'Get Results <i class="fas fa-arrow-right ms-2"></i>';
+                }
+            } else {
+                showQuizResults();
+            }
+        });
+        
+        document.getElementById('quizPrevBtn').addEventListener('click', function() {
+            if (quizStep > 1) {
+                document.querySelector('.quiz-step-modern.active').classList.remove('active');
+                quizStep--;
+                document.getElementById('quizStep' + quizStep).classList.add('active');
+                document.getElementById('quizNextBtn').innerHTML = 'Continue <i class="fas fa-arrow-right ms-2"></i>';
+                
+                if (quizStep === 1) {
+                    this.style.display = 'none';
+                }
+            }
+        });
+        
+        function showQuizResults() {
+            alert('Based on your selections, we recommend exploring Technology & Business Analytics career paths. These align with your preference for dynamic environments and problem-solving skills.');
+            
+            // Reset quiz
+            quizStep = 1;
+            document.querySelectorAll('.quiz-step-modern').forEach(step => step.classList.remove('active'));
+            document.getElementById('quizStep1').classList.add('active');
+            document.getElementById('quizPrevBtn').style.display = 'none';
+            document.getElementById('quizNextBtn').innerHTML = 'Continue <i class="fas fa-arrow-right ms-2"></i>';
+            document.querySelectorAll('.quiz-option-modern').forEach(opt => opt.classList.remove('selected'));
+        }
+        
+        // Skill Matcher Logic
+        function handleSkillKeyPress(event) {
+            if (event.key === 'Enter') {
+                addSkill();
+            }
+        }
+        
+        function addSkill() {
+            const input = document.getElementById('skillInput');
+            const skill = input.value.trim();
+            
+            if (skill && skill.length > 0) {
+                const skillPill = document.createElement('span');
+                skillPill.className = 'skill-pill-modern';
+                skillPill.innerHTML = `
+                    ${skill}
+                    <span class="remove-skill" onclick="removeSkillPill(this)">×</span>
+                `;
+                document.getElementById('skillsContainer').appendChild(skillPill);
+                input.value = '';
+                updateSkillMatch();
+            }
+        }
+        
+        function removeSkillPill(element) {
+            element.closest('.skill-pill-modern').remove();
+            updateSkillMatch();
+        }
+        
+        function updateSkillMatch() {
+            const skillCount = document.getElementById('skillsContainer').children.length;
+            const role = document.getElementById('targetRole').value;
+            
+            // Simple matching algorithm
+            const baseMatch = Math.min(skillCount * 12, 60);
+            const roleBonus = {
+                'frontend': 25,
+                'backend': 22,
+                'fullstack': 30,
+                'pm': 18,
+                'designer': 20,
+                'analyst': 15
+            }[role] || 10;
+            
+            const matchPercent = Math.min(baseMatch + roleBonus, 95);
+            
+            document.getElementById('matchPercentage').textContent = matchPercent + '%';
+            document.querySelector('.match-circle').style.background = 
+                `conic-gradient(var(--accent-primary) ${matchPercent}% 0%, #e5e7eb 0% 100%)`;
+        }
+        
+        function showMatchingJobs() {
+            const matchPercent = parseInt(document.getElementById('matchPercentage').textContent);
+            alert(`Found ${Math.floor(matchPercent / 10)} matching opportunities with your skills. Redirecting to job listings...`);
+        }
+        
+        // Navigation functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId)?.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        function explorePath(pathName) {
+            alert(`Exploring ${pathName} career path. Loading recommended resources and opportunities...`);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSkillMatch();
+            
+            // Add image hover effect
+            const heroImage = document.querySelector('.career-hero-section img');
+            if (heroImage) {
+                heroImage.addEventListener('mouseenter', () => {
+                    heroImage.style.transform = 'perspective(1000px) rotateY(0deg) scale(1.02)';
+                });
+                
+                heroImage.addEventListener('mouseleave', () => {
+                    heroImage.style.transform = 'perspective(1000px) rotateY(-10deg) scale(1)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

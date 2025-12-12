@@ -1,0 +1,3154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Insights | JobBridge</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js for salary visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* ========================================
+           ROOT VARIABLES FOR EASY CUSTOMIZATION
+        ======================================== */
+        :root {
+            /* Light Mode Colors */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-gradient-reverse: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+
+            /* Additional colors */
+            --primary-blue: #667eea;
+            --primary-purple: #764ba2;
+            --accent-pink: #f093fb;
+
+            /* Success colors */
+            --success-light: #d1fae5;
+            --success: #10b981;
+            --success-dark: #059669;
+
+            /* Warning colors */
+            --warning-light: #fef3c7;
+            --warning: #f59e0b;
+            --warning-dark: #d97706;
+
+            /* Info colors */
+            --info-light: #dbeafe;
+            --info: #3b82f6;
+            --info-dark: #2563eb;
+
+            /* Danger colors */
+            --danger-light: #fee2e2;
+            --danger: #ef4444;
+            --danger-dark: #dc2626;
+
+            /* Radius */
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+        }
+
+        /* ========================================
+           GENERAL STYLES
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        /* Main container to push footer down */
+        .main-wrapper {
+            flex: 1 0 auto;
+            width: 100%;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ========================================
+           NAVIGATION BAR STYLES
+        ======================================== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background: var(--bg-secondary);
+            color: var(--primary-blue);
+        }
+
+        .nav-link.active {
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -6px;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #764ba2, #667eea);
+            border-radius: 4px;
+            box-shadow: 0 0 12px rgba(118, 75, 162, 0.8);
+            animation: activeGlow 1.4s infinite alternate ease-in-out;
+        }
+
+        @keyframes activeGlow {
+            from {
+                box-shadow: 0 0 6px rgba(118, 75, 162, 0.5);
+            }
+
+            to {
+                box-shadow: 0 0 16px rgba(118, 75, 162, 1);
+            }
+        }
+
+        /* ========================================
+           SHINY BUTTON COMPONENT
+        ======================================== */
+        .btn-shiny {
+            position: relative;
+            padding: 0.625rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn-shiny::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-shiny:hover::before {
+            left: 100%;
+        }
+
+        .btn-shiny-primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .btn-shiny-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-shiny-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-shiny-secondary:hover {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* ========================================
+           INDUSTRY INSIGHTS PAGE STYLES
+        ======================================== */
+        /* Page Container */
+        .page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 4rem;
+            width: 100%;
+            flex: 1 0 auto;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0px);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+            line-height: 1.24;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* Search Bar */
+        .search-container-insights {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .search-box-insights {
+            position: relative;
+        }
+
+        .search-input-insights {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-input-insights:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon-insights {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 50;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .category-tab {
+            padding: 1rem 2rem;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .category-tab i {
+            font-size: 1.2rem;
+        }
+
+        .category-tab:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-tab.active {
+            background: var(--primary-gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        /* Insights Grid */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Insight Card */
+        .insight-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .insight-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .insight-image {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .insight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .insight-card:hover .insight-image img {
+            transform: scale(1.1);
+        }
+
+        .insight-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: var(--shadow-sm);
+            animation: pulse 2s infinite;
+        }
+
+        .badge-trending {
+            background: var(--warning);
+            color: white;
+        }
+
+        .badge-new {
+            background: var(--success);
+            color: white;
+        }
+
+        .badge-featured {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .badge-research {
+            background: var(--info);
+            color: white;
+        }
+
+        .badge-exclusive {
+            background: var(--danger);
+            color: white;
+        }
+
+        .insight-header {
+            padding: 1.8rem;
+            position: relative;
+        }
+
+        .insight-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .insight-card:hover .insight-title {
+            color: var(--primary-blue);
+        }
+
+        .insight-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .insight-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .insight-meta-item i {
+            color: var(--primary-purple);
+        }
+
+        .insight-body {
+            padding: 0 1.8rem 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .insight-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .insight-tag {
+            padding: 0.4rem 0.8rem;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .insight-tag:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .insight-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .insight-card:hover .stat-item {
+            color: var(--primary-purple);
+        }
+
+        .stat-item i {
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .insight-card:hover .stat-item i {
+            transform: scale(1.2);
+        }
+
+        /* Industry Trends Section */
+        .trends-section {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: 4rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .trend-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trend-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+
+        .trend-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .trend-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .trend-card:hover .trend-icon {
+            transform: scale(1.1) rotate(1.0deg);
+        }
+
+        .trend-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-stats {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--success);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Salary Insights - ENHANCED */
+        .salary-section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .salary-chart-container {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .salary-chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .chart-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-title span {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .chart-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .chart-filter {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .chart-filter:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .chart-filter.active {
+            background: var(--primary-gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chart-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .chart-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-wrapper {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .chart-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .salary-comparison {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+
+        .comparison-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .comparison-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-item:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-role {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .comparison-salary {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .comparison-change {
+            font-size: 0.9rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .change-up {
+            background: var(--success-light);
+            color: var(--success-dark);
+        }
+
+        .change-down {
+            background: var(--danger-light);
+            color: var(--danger-dark);
+        }
+
+        /* Slider Container */
+        .salary-slider-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .slider-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .slider-value {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .salary-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--border-color);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .salary-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .salary-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Resource Links */
+        .resources-section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-blue);
+        }
+
+        .resource-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover .resource-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .resource-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-link:hover {
+            color: var(--primary-purple);
+            gap: 0.75rem;
+        }
+
+        /* Newsletter Section */
+        /* .newsletter-section {
+            background: var(--primary-gradient);
+            border-radius: var(--radius-xl);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+
+        .newsletter-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        .newsletter-text {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.95;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: var(--transition);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        .newsletter-btn {
+            padding: 1rem 2rem;
+            background: var(--primary-purple);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px) scale(1.05);
+        } */
+
+        /* Newsletter Section - ENHANCED WITH ANIMATIONS */
+        .newsletter-section {
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            /* border-radius: var(--radius-2xl); */
+            padding: 6rem 4rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 6rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .newsletter-text {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+            opacity: 0.95;
+            font-weight: 400;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1.2rem;
+            position: relative;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.95);
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        .newsletter-btn {
+            padding: 1.2rem 3rem;
+            background: var(--primary-purple);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .newsletter-btn:hover::before {
+            left: 100%;
+        }
+
+        .newsletter-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .newsletter-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Success Animation Container */
+        .success-animation {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-2xl);
+            z-index: 2;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .success-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 2rem;
+            animation: successScale 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+        }
+
+        .success-message {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            animation: fadeInUp 0.5s ease-out 0.5s both;
+        }
+
+        .success-subtext {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            animation: fadeInUp 0.5s ease-out 0.7s both;
+        }
+
+        @keyframes successScale {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ========================================
+           FOOTER STYLES - FULL WIDTH NO PADDING ISSUES
+        ======================================== */
+        footer {
+            background: #1a1a2e;
+            color: #9ca3af;
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+            /* Push footer to bottom */
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .footer-logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-description {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: #a78bfa;
+        }
+
+        .footer-links a i {
+            font-size: 0.75rem;
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #374151;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+        @media (max-width: 1200px) {
+            .insights-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 3rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+
+            .trends-section {
+                padding: 3rem 2rem;
+            }
+
+            .chart-content {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-section {
+                padding: 4rem 2rem;
+            }
+
+            .newsletter-title {
+                font-size: 2.8rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input,
+            .newsletter-btn {
+                width: 100%;
+            }
+
+            .category-tabs-container {
+                top: 90px;
+                padding: 0.75rem;
+            }
+
+            .category-tabs {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 0.5rem;
+                scrollbar-width: thin;
+                scrollbar-color: var(--primary-blue) var(--bg-tertiary);
+            }
+
+            .category-tabs::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .category-tabs::-webkit-scrollbar-track {
+                background: var(--bg-tertiary);
+                border-radius: 3px;
+            }
+
+            .category-tabs::-webkit-scrollbar-thumb {
+                background: var(--primary-blue);
+                border-radius: 3px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 5rem 1rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .category-tabs {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 1rem;
+            }
+
+            .category-tab {
+                white-space: nowrap;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .chart-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .chart-filters {
+                align-self: stretch;
+                justify-content: space-between;
+            }
+
+            .trends-section {
+                padding: 2rem 1.5rem;
+            }
+
+            /* .newsletter-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .newsletter-title {
+                font-size: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input,
+            .newsletter-btn {
+                width: 100%;
+            } */
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .newsletter-title {
+                font-size: 2.2rem;
+            }
+
+            .newsletter-text {
+                font-size: 1.2rem;
+            }
+
+            .footer-content {
+                padding: 0 1.5rem;
+            }
+
+            .navbar .d-none.d-lg-flex {
+                display: none !important;
+            }
+
+            .footer-content {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .insight-header {
+                padding: 1.5rem;
+            }
+
+            .insight-body {
+                padding: 0 1.5rem 1.5rem;
+            }
+
+            .trend-card {
+                padding: 1.5rem;
+            }
+
+            .chart-wrapper {
+                min-height: 300px;
+            }
+
+            .newsletter-title {
+                font-size: 1.8rem;
+            }
+
+            .newsletter-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .category-tab {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+        ======================================== */
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .loading {
+            background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--border-color) 50%, var(--bg-secondary) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- Navigation Bar -->
+        <nav class="navbar fixed-top">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <a href="index.html" class="logo-container">
+                        <div class="logo-icon">
+                            <i class="fas fa-bridge"></i>
+                        </div>
+                        <span class="logo-text">JobBridge</span>
+                    </a>
+
+                    <div class="d-none d-lg-flex gap-4">
+                        <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                        <a href="find_talent.html" class="nav-link">Find Talent</a>
+                        <!-- <a href="industry_insights.html" class="nav-link active">Industry Insights</a> -->
+                        <a href="resources.html" class="nav-link">Resources</a>
+                        <a href="About.html" class="nav-link">About Us</a>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="d-none d-md-flex gap-2">
+                            <button onclick="window.location.href='get_started.html'"
+                                class="btn-shiny btn-shiny-secondary">Sign In</button>
+                            <button onclick="window.location.href='get_started.html'"
+                                class="btn-shiny btn-shiny-primary">Get Started</button>
+                        </div>
+
+                        <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#mobileMenu">
+                            <i class="bi bi-list" style="font-size: 1.5rem; color: var(--text-primary);"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" style="color: var(--text-primary);">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="d-flex flex-column gap-3">
+                    <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                    <a href="find_talent.html" class="nav-link">Find Talent</a>
+                    <a href="industry_insights.html" class="nav-link active">Industry Insights</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="About.html" class="nav-link">About Us</a>
+                    <hr>
+
+                    <button onclick="window.location.href='get_started.html'" class="btn-shiny btn-shiny-primary w-100">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="page-container">
+            <!-- Hero Section -->
+            <header class="hero-section">
+                <div class="hero-background"></div>
+                <h1 class="page-title">Industry Insights</h1>
+                <p class="page-subtitle">Stay ahead of the curve with data-driven insights, market trends, and expert
+                    analysis on the evolving job market.</p>
+
+                <!-- Search Bar -->
+                <div class="search-container-insights">
+                    <div class="search-box-insights">
+                        <i class="fas fa-search search-icon-insights"></i>
+                        <input type="text" class="search-input-insights"
+                            placeholder="Search insights, reports, or trends..." id="searchInsights"
+                            aria-label="Search insights">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">
+                    <i class="fas fa-globe"></i> All Insights
+                </button>
+                <button class="category-tab" data-category="tech">
+                    <i class="fas fa-laptop-code"></i> Technology
+                </button>
+                <button class="category-tab" data-category="finance">
+                    <i class="fas fa-chart-line"></i> Finance
+                </button>
+                <button class="category-tab" data-category="healthcare">
+                    <i class="fas fa-heartbeat"></i> Healthcare
+                </button>
+                <button class="category-tab" data-category="marketing">
+                    <i class="fas fa-bullhorn"></i> Marketing
+                </button>
+                <button class="category-tab" data-category="remote">
+                    <i class="fas fa-home"></i> Remote Work
+                </button>
+                <button class="category-tab" data-category="salary">
+                    <i class="fas fa-money-bill-wave"></i> Salary Trends
+                </button>
+                <button class="category-tab" data-category="ai">
+                    <i class="fas fa-robot"></i> AI & Automation
+                </button>
+            </div>
+
+            <!-- Insights Grid -->
+            <div class="insights-grid" id="insightsView">
+                <!-- Insight cards will be dynamically generated -->
+            </div>
+
+            <!-- Industry Trends Section -->
+            <section class="trends-section">
+                <div class="section-header">
+                    <h2 class="section-title">Current Industry Trends</h2>
+                    <p class="section-subtitle">Discover the latest developments shaping the future of work across
+                        various industries.</p>
+                </div>
+
+                <div class="trends-grid">
+                    <div class="trend-card">
+                        <div class="trend-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="trend-title">AI & Automation</h3>
+                        <p class="trend-description">How artificial intelligence is transforming job roles and creating
+                            new opportunities in tech and beyond.</p>
+                        <div class="trend-stats">
+                            <i class="fas fa-chart-line"></i>
+                            <span>47% growth in AI-related jobs</span>
+                        </div>
+                    </div>
+
+                    <div class="trend-card">
+                        <div class="trend-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="trend-title">Green Jobs</h3>
+                        <p class="trend-description">The rise of sustainable careers in renewable energy, conservation,
+                            and environmental technology.</p>
+                        <div class="trend-stats">
+                            <i class="fas fa-chart-line"></i>
+                            <span>65% increase in sustainability roles</span>
+                        </div>
+                    </div>
+
+                    <div class="trend-card">
+                        <div class="trend-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="trend-title">Gig Economy</h3>
+                        <p class="trend-description">The shift towards freelance and contract work, and what it means
+                            for traditional employment.</p>
+                        <div class="trend-stats">
+                            <i class="fas fa-chart-line"></i>
+                            <span>36% of workforce now freelancing</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Salary Insights - ENHANCED -->
+            <section class="salary-section" id="salary-section">
+                <div class="salary-chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Tech Salary Trends <span>2025</span></h3>
+                        <div class="chart-filters">
+                            <button class="chart-filter active" data-region="global">Global</button>
+                            <button class="chart-filter" data-region="na">North America</button>
+                            <button class="chart-filter" data-region="eu">Europe</button>
+                            <button class="chart-filter" data-region="asia">Asia Pacific</button>
+                        </div>
+                    </div>
+
+                    <div class="chart-content">
+                        <div class="chart-wrapper">
+                            <canvas id="salaryChart"></canvas>
+                        </div>
+
+                        <div class="chart-sidebar">
+                            <div class="salary-comparison">
+                                <h4 class="comparison-title">Top Paying Roles 2025</h4>
+                                <div id="comparisonList">
+                                    <!-- Dynamic comparison items -->
+                                </div>
+                            </div>
+
+                            <div class="salary-slider-container">
+                                <div class="slider-header">
+                                    <h4 class="slider-title">Experience Level</h4>
+                                    <span class="slider-value" id="experienceValue">5 Years</span>
+                                </div>
+                                <input type="range" min="0" max="20" value="5" class="salary-slider"
+                                    id="experienceSlider">
+                                <div class="slider-labels">
+                                    <span>Entry</span>
+                                    <span>Mid</span>
+                                    <span>Senior</span>
+                                    <span>Expert</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resource Links -->
+            <section class="resources-section">
+                <div class="section-header">
+                    <h2 class="section-title">Essential Resources</h2>
+                    <p class="section-subtitle">Access valuable tools and guides to enhance your career development.</p>
+                </div>
+
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h4 class="resource-title">Market Reports</h4>
+                        <p class="resource-description">Download comprehensive industry analysis reports for in-depth
+                            insights.</p>
+                        <a href="#" class="resource-link">
+                            Download Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4 class="resource-title">Webinars</h4>
+                        <p class="resource-description">Join live sessions with industry experts and thought leaders.
+                        </p>
+                        <a href="#" class="resource-link">
+                            View Schedule <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4 class="resource-title">Career Tools</h4>
+                        <p class="resource-description">Access salary calculators, skills assessments, and career
+                            planning tools.</p>
+                        <a href="#" class="resource-link">
+                            Explore Tools <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4 class="resource-title">Research Library</h4>
+                        <p class="resource-description">Browse our collection of whitepapers, case studies, and research
+                            papers.</p>
+                        <a href="#" class="resource-link">
+                            Visit Library <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Section - ENHANCED WITH ANIMATIONS -->
+            <section class="newsletter-section" id="newsletterSection">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay Informed</h2>
+                    <p class="newsletter-text">Get weekly insights, trend reports, and career advice delivered to your inbox.</p>
+                    
+                    <div class="newsletter-form" id="newsletterForm">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address" aria-label="Email for newsletter" id="newsletterEmail">
+                        <button class="newsletter-btn" onclick="subscribeNewsletter(event)">
+                            <span>Subscribe Now</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Success Animation -->
+                <div class="success-animation" id="successAnimation">
+                    <div class="success-content">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="success-message">You're Subscribed!</h3>
+                        <p class="success-subtext">Check your inbox for the confirmation email.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    
+
+    <!-- Footer - Full Width -->
+    <footer>
+        <div class="footer-content">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <a href="index.html" style="text-decoration: none">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <i class="fas fa-bridge"></i>
+                            </div>
+                            <span class="footer-logo-text">JobBridge</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">
+                        Connecting talented professionals with amazing opportunities worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://x.com/" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/mohammadmahdimonsur?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="https://facebook.com/" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="https://github.com/mohammadmahdimonsur" class="social-link"><i
+                                class="bi bi-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Clients</h3>
+                    <ul class="footer-links">
+                        <li><a href="post_a_job.html"><i class="bi bi-chevron-right"></i>Post a Job</a></li>
+                        <li><a href="browse_talent.html"><i class="bi bi-chevron-right"></i>Browse Talent</a></li>
+                        <li><a href="enterprise_solutions.html"><i class="bi bi-chevron-right"></i>Enterprise Solutions</a></li>
+                        <li><a href="hire_developers.html"><i class="bi bi-chevron-right"></i>Hire Developers</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Talents</h3>
+                    <ul class="footer-links">
+                        <li><a href="find_jobs.html"><i class="bi bi-chevron-right"></i>Find Jobs</a></li>
+                        <li><a href="get_started.html"><i class="bi bi-chevron-right"></i>Create Profile</a></li>
+                        <li><a href="career_resources.html"><i class="bi bi-chevron-right"></i>Career Resources</a></li>
+                        <li><a href="skill_tests.html"><i class="bi bi-chevron-right"></i>Skill Tests</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html"><i class="bi bi-chevron-right"></i>Blog</a></li>
+                        <li><a href="webinars.html"><i class="bi bi-chevron-right"></i>Webinars</a></li>
+                        <li><a href="research_reports.html"><i class="bi bi-chevron-right"></i>Research Reports</a></li>
+                        <li><a href="industry_insights.html"><i class="bi bi-chevron-right"></i>Industry Insights</a></li>
+                        <li><a href="events.html"><i class="bi bi-chevron-right"></i>Events</a></li>
+                    </ul>
+                </div>
+                <!-- New Platform Section -->
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="career.html"><i class="bi bi-chevron-right"></i>Career</a></li>
+                        <li><a href="help_center.html"><i class="bi bi-chevron-right"></i>Help Center</a></li>
+                        <li><a href="community.html"><i class="bi bi-chevron-right"></i>Community</a></li>
+                        <li><a href="contact_us.html"><i class="bi bi-chevron-right"></i>Contact Us</a></li>
+                        <li><a href="about.html"><i class="bi bi-chevron-right"></i>About JobBridge</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom mt-4 pt-4 border-top border-secondary">
+                <p class="text-center mb-0" style="color: #9ca3af; font-size: 0.875rem;">
+                    © 2024 JobBridge. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Enhanced Industry Insights Data (20 cards)
+        const insightsData = [
+            {
+                id: 1,
+                title: "The Future of Remote Work in 2025",
+                excerpt: "How hybrid models are becoming the new standard and what it means for employers and employees. New tools and platforms are emerging to support distributed teams.",
+                category: "remote",
+                image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Sarah Johnson",
+                date: "Mar 15, 2025",
+                readTime: "8 min read",
+                tags: ["Remote Work", "Future of Work", "Hybrid Models", "Digital Nomad"],
+                views: "12.5k",
+                comments: 142,
+                badge: "trending"
+            },
+            {
+                id: 2,
+                title: "AI's Impact on Software Development Jobs 2025",
+                excerpt: "Exploring how artificial intelligence is changing developer roles and creating new opportunities. Copilot and AI-assisted coding are revolutionizing the industry.",
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=2065&q=80",
+                author: "Michael Chen",
+                date: "Mar 12, 2025",
+                readTime: "12 min read",
+                tags: ["AI", "Software Development", "Technology", "Machine Learning"],
+                views: "18.3k",
+                comments: 256,
+                badge: "featured"
+            },
+            {
+                id: 3,
+                title: "FinTech Salary Report 2025",
+                excerpt: "Comprehensive analysis of compensation trends in financial technology across global markets. Blockchain and crypto roles seeing highest growth.",
+                category: "finance",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "David Wilson",
+                date: "Mar 10, 2025",
+                readTime: "15 min read",
+                tags: ["FinTech", "Salary", "Finance", "Blockchain"],
+                views: "9.8k",
+                comments: 89,
+                badge: "research"
+            },
+            {
+                id: 4,
+                title: "Healthcare Digital Transformation 2025",
+                excerpt: "How technology is revolutionizing healthcare jobs and creating new career paths. Telemedicine and AI diagnostics lead the way.",
+                category: "healthcare",
+                image: "https://images.unsplash.com/photo-1486049125644-f35e226a5e14?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                author: "Dr. Emily Parker",
+                date: "Mar 8, 2025",
+                readTime: "10 min read",
+                tags: ["Healthcare", "Digital Health", "Technology", "Telemedicine"],
+                views: "7.2k",
+                comments: 76,
+                badge: "new"
+            },
+            {
+                id: 5,
+                title: "Digital Marketing Trends 2025",
+                excerpt: "Emerging strategies and technologies shaping the future of digital marketing careers. AI content generation and personalized marketing dominate.",
+                category: "marketing",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Lisa Rodriguez",
+                date: "Mar 5, 2025",
+                readTime: "6 min read",
+                tags: ["Marketing", "Digital Trends", "Social Media", "AI Marketing"],
+                views: "11.4k",
+                comments: 121,
+                badge: "trending"
+            },
+            {
+                id: 6,
+                title: "Tech Salary Growth Analysis 2025",
+                excerpt: "Detailed breakdown of salary increases across different tech roles and regions. Machine Learning Engineers see 35% year-over-year growth.",
+                category: "salary",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Robert Kim",
+                date: "Mar 3, 2025",
+                readTime: "14 min read",
+                tags: ["Salary", "Tech Jobs", "Compensation", "Career Growth"],
+                views: "15.7k",
+                comments: 203,
+                badge: "featured"
+            },
+            {
+                id: 7,
+                title: "Cybersecurity Talent Shortage 2025",
+                excerpt: "Understanding the growing demand for cybersecurity professionals and how to bridge the gap. Cloud security experts most in demand.",
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "James Miller",
+                date: "Feb 28, 2025",
+                readTime: "9 min read",
+                tags: ["Cybersecurity", "Tech Skills", "Security", "Cloud Security"],
+                views: "8.9k",
+                comments: 94,
+                badge: "research"
+            },
+            {
+                id: 8,
+                title: "The Rise of Green Careers 2025",
+                excerpt: "Exploring sustainable job opportunities in renewable energy and environmental sectors. ESG roles growing 40% annually.",
+                category: "remote",
+                image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Maria Gonzalez",
+                date: "Feb 25, 2025",
+                readTime: "7 min read",
+                tags: ["Sustainability", "Green Jobs", "Environment", "ESG"],
+                views: "6.3k",
+                comments: 67,
+                badge: "new"
+            },
+            {
+                id: 9,
+                title: "Quantum Computing Job Market 2025",
+                excerpt: "How quantum computing is creating new career paths and what skills are needed. Quantum algorithm developers in high demand.",
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Dr. Alex Chen",
+                date: "Feb 20, 2025",
+                readTime: "11 min read",
+                tags: ["Quantum Computing", "Emerging Tech", "Research", "Physics"],
+                views: "5.4k",
+                comments: 45,
+                badge: "exclusive"
+            },
+            {
+                id: 10,
+                title: "Metaverse Career Opportunities",
+                excerpt: "Exploring jobs in the emerging metaverse economy from virtual architects to digital fashion designers.",
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Virtual Reality Team",
+                date: "Feb 18, 2025",
+                readTime: "8 min read",
+                tags: ["Metaverse", "VR", "AR", "Digital Economy"],
+                views: "9.2k",
+                comments: 112,
+                badge: "trending"
+            },
+            {
+                id: 11,
+                title: "Data Science Salary Benchmark 2025",
+                excerpt: "Comprehensive analysis of data science compensation across industries and experience levels.",
+                category: "salary",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Data Analytics Team",
+                date: "Feb 15, 2025",
+                readTime: "10 min read",
+                tags: ["Data Science", "Salary", "Analytics", "Big Data"],
+                views: "7.8k",
+                comments: 89,
+                badge: "research"
+            },
+            {
+                id: 12,
+                title: "AI Ethics and Governance Careers",
+                excerpt: "New roles emerging in AI ethics, governance, and responsible AI implementation across industries.",
+                category: "ai",
+                image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Ethics Committee",
+                date: "Feb 12, 2025",
+                readTime: "9 min read",
+                tags: ["AI Ethics", "Governance", "Responsible AI", "Regulation"],
+                views: "6.1k",
+                comments: 78,
+                badge: "new"
+            },
+            {
+                id: 13,
+                title: "Cloud Computing Salary Trends",
+                excerpt: "How cloud certifications and specializations are impacting salaries in 2025 across major platforms.",
+                category: "salary",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80",
+                author: "Cloud Experts",
+                date: "Feb 10, 2025",
+                readTime: "12 min read",
+                tags: ["Cloud Computing", "AWS", "Azure", "GCP", "Salary"],
+                views: "8.5k",
+                comments: 102,
+                badge: "featured"
+            },
+            {
+                id: 14,
+                title: "Remote Work Productivity Tools 2025",
+                excerpt: "Latest tools and platforms boosting remote team productivity and collaboration worldwide.",
+                category: "remote",
+                image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Productivity Lab",
+                date: "Feb 8, 2025",
+                readTime: "7 min read",
+                tags: ["Remote Tools", "Productivity", "Collaboration", "Digital Workplace"],
+                views: "5.9k",
+                comments: 67,
+                badge: "trending"
+            },
+            {
+                id: 15,
+                title: "Blockchain Developer Market 2025",
+                excerpt: "Smart contract developers and blockchain architects see unprecedented demand and compensation.",
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Blockchain Team",
+                date: "Feb 5, 2025",
+                readTime: "11 min read",
+                tags: ["Blockchain", "Web3", "Smart Contracts", "Crypto"],
+                views: "10.3k",
+                comments: 145,
+                badge: "featured"
+            },
+            {
+                id: 16,
+                title: "Healthcare IT Salary Report",
+                excerpt: "Compensation analysis for healthcare technology roles including EHR specialists and clinical informatics.",
+                category: "healthcare",
+                image: "https://images.unsplash.com/photo-1627260119158-13f1fca542a4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                author: "Healthcare Analytics",
+                date: "Feb 3, 2025",
+                readTime: "9 min read",
+                tags: ["Health IT", "EHR", "Clinical Informatics", "Salary"],
+                views: "4.7k",
+                comments: 56,
+                badge: "research"
+            },
+            {
+                id: 17,
+                title: "Digital Marketing Salary Guide 2025",
+                excerpt: "How AI marketing tools and automation are changing compensation structures in digital marketing.",
+                category: "marketing",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Marketing Analytics",
+                date: "Jan 30, 2025",
+                readTime: "8 min read",
+                tags: ["Digital Marketing", "AI Marketing", "Salary Guide", "Automation"],
+                views: "6.8k",
+                comments: 91,
+                badge: "trending"
+            },
+            {
+                id: 18,
+                title: "FinTech Regulatory Careers",
+                excerpt: "New compliance and regulatory roles emerging in the rapidly evolving financial technology sector.",
+                category: "finance",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
+                author: "Regulatory Team",
+                date: "Jan 28, 2025",
+                readTime: "10 min read",
+                tags: ["FinTech", "Regulation", "Compliance", "Financial Services"],
+                views: "5.2k",
+                comments: 63,
+                badge: "new"
+            },
+            {
+                id: 19,
+                title: "AI-Assisted Development Trends",
+                excerpt: "How AI is transforming software development workflows and creating new specialized roles.",
+                category: "ai",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "AI Development Team",
+                date: "Jan 25, 2025",
+                readTime: "11 min read",
+                tags: ["AI Development", "Code Generation", "Software Engineering", "Automation"],
+                views: "8.1k",
+                comments: 104,
+                badge: "featured"
+            },
+            {
+                id: 20,
+                title: "Global Remote Work Salary Index",
+                excerpt: "Comprehensive analysis of how remote work is affecting salaries across different countries and roles.",
+                category: "remote",
+                image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "Global Research Team",
+                date: "Jan 22, 2025",
+                readTime: "13 min read",
+                tags: ["Global Remote", "Salary Index", "International", "Digital Nomad"],
+                views: "7.3k",
+                comments: 88,
+                badge: "research"
+            },
+            {
+                id: 21,
+                title: "Neurotechnology Career Paths 2025",
+                excerpt: "Emerging opportunities in brain-computer interfaces, neuroprosthetics, and cognitive enhancement technologies.",
+                category: "tech",
+                image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                author: "NeuroTech Research",
+                date: "Jan 20, 2025",
+                readTime: "14 min read",
+                tags: ["Neurotechnology", "BCI", "Medical Tech", "Future Tech", "Innovation"],
+                views: "5.8k",
+                comments: 72,
+                badge: "new"
+            }
+        ];
+
+        // Salary Data for 2025
+        const salaryData2025 = {
+            global: {
+                labels: ['AI/ML Engineer', 'DevOps Engineer', 'Data Scientist', 'Cloud Architect', 'Cybersecurity Analyst', 'Full Stack Dev', 'Blockchain Dev', 'Product Manager'],
+                salaries: [185000, 155000, 165000, 175000, 145000, 135000, 190000, 160000],
+                changes: [+35, +28, +32, +30, +25, +22, +40, +27]
+            },
+            na: {
+                labels: ['AI/ML Engineer', 'DevOps Engineer', 'Data Scientist', 'Cloud Architect', 'Cybersecurity Analyst', 'Full Stack Dev', 'Blockchain Dev', 'Product Manager'],
+                salaries: [220000, 180000, 195000, 210000, 170000, 155000, 230000, 185000],
+                changes: [+38, +30, +35, +32, +28, +25, +45, +30]
+            },
+            eu: {
+                labels: ['AI/ML Engineer', 'DevOps Engineer', 'Data Scientist', 'Cloud Architect', 'Cybersecurity Analyst', 'Full Stack Dev', 'Blockchain Dev', 'Product Manager'],
+                salaries: [125000, 105000, 115000, 120000, 100000, 95000, 135000, 110000],
+                changes: [+32, +25, +30, +28, +22, +20, +38, +25]
+            },
+            asia: {
+                labels: ['AI/ML Engineer', 'DevOps Engineer', 'Data Scientist', 'Cloud Architect', 'Cybersecurity Analyst', 'Full Stack Dev', 'Blockchain Dev', 'Product Manager'],
+                salaries: [95000, 80000, 85000, 90000, 75000, 70000, 100000, 85000],
+                changes: [+40, +32, +38, +35, +28, +25, +50, +32]
+            }
+        };
+
+        // Chart instance
+        let salaryChart;
+
+        // Set active nav link
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Generate insight cards
+        function generateInsightCards() {
+            const insightsView = document.getElementById('insightsView');
+            insightsView.innerHTML = '';
+
+            insightsData.forEach((insight, index) => {
+                const insightCard = document.createElement('div');
+                insightCard.className = 'insight-card';
+                insightCard.setAttribute('data-category', insight.category);
+                insightCard.setAttribute('data-id', insight.id);
+                insightCard.id = `insight-${insight.id}`;
+                insightCard.style.animationDelay = `${index * 0.1}s`;
+
+                const badgeClass = `insight-badge badge-${insight.badge}`;
+
+                insightCard.innerHTML = `
+                    <div class="insight-image">
+                        <img src="${insight.image}" alt="${insight.title}" loading="lazy" decoding="async">
+                        <div class="${badgeClass}">${insight.badge.charAt(0).toUpperCase() + insight.badge.slice(1)}</div>
+                    </div>
+                    <div class="insight-header">
+                        <h3 class="insight-title">${insight.title}</h3>
+                        <div class="insight-meta">
+                            <div class="insight-meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>${insight.author}</span>
+                            </div>
+                            <div class="insight-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>${insight.date}</span>
+                            </div>
+                            <div class="insight-meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>${insight.readTime}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="insight-body">
+                        <p class="insight-excerpt">${insight.excerpt}</p>
+                        <div class="insight-tags">
+                            ${insight.tags.map(tag => `<span class="insight-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="insight-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>${insight.views} views</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-comment"></i>
+                                <span>${insight.comments} comments</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Add click event to open insight
+                insightCard.addEventListener('click', () => {
+                    openInsightDetail(insight.id);
+                });
+
+                insightsView.appendChild(insightCard);
+            });
+        }
+
+        // Initialize salary chart
+        function initializeSalaryChart(region = 'global') {
+            const ctx = document.getElementById('salaryChart').getContext('2d');
+            const data = salaryData2025[region];
+
+            if (salaryChart) {
+                salaryChart.destroy();
+            }
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(102, 126, 234, 0.8)');
+            gradient.addColorStop(1, 'rgba(118, 75, 162, 0.2)');
+
+            salaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Average Salary ($)',
+                        data: data.salaries,
+                        backgroundColor: gradient,
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        hoverBackgroundColor: 'rgba(118, 75, 162, 0.8)',
+                        hoverBorderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Poppins', sans-serif"
+                                },
+                                color: 'var(--text-primary)'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: 'var(--text-primary)',
+                            bodyColor: 'var(--text-primary)',
+                            borderColor: 'var(--primary-blue)',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function (context) {
+                                    const value = context.raw;
+                                    const index = context.dataIndex;
+                                    const change = data.changes[index];
+                                    return `$${value.toLocaleString()} (+${change}% YoY)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                callback: function (value) {
+                                    return '$' + value.toLocaleString();
+                                },
+                                font: {
+                                    size: 12
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Annual Salary (USD)',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            updateComparisonList(region);
+        }
+
+        // Update comparison list
+        function updateComparisonList(region) {
+            const data = salaryData2025[region];
+            const comparisonList = document.getElementById('comparisonList');
+
+            let html = '';
+            data.labels.forEach((label, index) => {
+                const salary = data.salaries[index];
+                const change = data.changes[index];
+                const changeClass = change >= 0 ? 'change-up' : 'change-down';
+                const changeSign = change >= 0 ? '+' : '';
+
+                html += `
+                    <div class="comparison-item">
+                        <span class="comparison-role">${label}</span>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span class="comparison-salary">$${salary.toLocaleString()}</span>
+                            <span class="comparison-change ${changeClass}">${changeSign}${change}%</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            comparisonList.innerHTML = html;
+        }
+
+        // Update experience slider
+        function updateExperienceSlider() {
+            const slider = document.getElementById('experienceSlider');
+            const valueDisplay = document.getElementById('experienceValue');
+
+            slider.addEventListener('input', function () {
+                const value = parseInt(this.value);
+                let experienceLevel;
+
+                if (value < 3) experienceLevel = "Entry Level";
+                else if (value < 7) experienceLevel = "Mid Level";
+                else if (value < 15) experienceLevel = "Senior Level";
+                else experienceLevel = "Expert Level";
+
+                valueDisplay.textContent = `${experienceLevel} (${value} Years)`;
+
+                // Update chart based on experience (simulated)
+                updateChartForExperience(value);
+            });
+        }
+
+        // Simulated chart update for experience
+        function updateChartForExperience(years) {
+            if (!salaryChart) return;
+
+            const region = document.querySelector('.chart-filter.active').getAttribute('data-region');
+            const baseData = salaryData2025[region].salaries;
+
+            // Simulate salary increase based on experience
+            const experienceMultiplier = 1 + (years * 0.03); // 3% per year
+            const adjustedSalaries = baseData.map(salary => Math.round(salary * experienceMultiplier));
+
+            salaryChart.data.datasets[0].data = adjustedSalaries;
+            salaryChart.update('none');
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            const searchInput = document.getElementById('searchInsights');
+            searchInput.addEventListener('input', handleSearchInput);
+
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    filterInsights();
+                });
+            });
+
+            const chartFilters = document.querySelectorAll('.chart-filter');
+            chartFilters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    chartFilters.forEach(f => f.classList.remove('active'));
+                    filter.classList.add('active');
+                    const region = filter.getAttribute('data-region');
+                    initializeSalaryChart(region);
+                });
+            });
+
+            // Scroll animations
+            setupScrollAnimations();
+        }
+
+        // Handle search input
+        function handleSearchInput(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            filterInsights();
+        }
+
+        // Filter insights based on category and search term
+        function filterInsights() {
+            const searchTerm = document.getElementById('searchInsights').value.toLowerCase();
+            const activeCategory = document.querySelector('.category-tab.active').getAttribute('data-category');
+
+            const insightCards = document.querySelectorAll('.insight-card');
+            let visibleCount = 0;
+
+            insightCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('.insight-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.insight-excerpt').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.insight-tag')).map(tag => tag.textContent.toLowerCase());
+
+                const matchesSearch = searchTerm === '' ||
+                    title.includes(searchTerm) ||
+                    excerpt.includes(searchTerm) ||
+                    tags.some(tag => tag.includes(searchTerm));
+
+                const matchesCategory = activeCategory === 'all' || category === activeCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'flex';
+                    card.style.animation = `fadeInUp 0.4s ease-out ${visibleCount * 0.05}s both`;
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Setup scroll animations
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('.trends-section, .salary-section, .resources-section, .newsletter-section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Open insight detail (placeholder function)
+        function openInsightDetail(id) {
+            const insight = insightsData.find(i => i.id === id);
+            if (insight) {
+                // Create modal-like overlay
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    padding: 2rem;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                `;
+
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    background: var(--bg-primary);
+                    border-radius: var(--radius-lg);
+                    max-width: 800px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    padding: 2rem;
+                    transform: translateY(20px);
+                    transition: transform 0.3s ease;
+                `;
+
+                modal.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <h2 style="font-size: 2rem; color: var(--text-primary); margin: 0;">${insight.title}</h2>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background: none; border: none; font-size: 1.5rem; color: var(--text-secondary); cursor: pointer;">×</button>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                        <span><i class="fas fa-user"></i> ${insight.author}</span>
+                        <span><i class="fas fa-calendar"></i> ${insight.date}</span>
+                        <span><i class="fas fa-clock"></i> ${insight.readTime}</span>
+                    </div>
+                    <img src="${insight.image}" alt="${insight.title}" style="width: 100%; height: 300px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 2rem;">
+                    <p style="color: var(--text-primary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 2rem;">
+                        ${insight.excerpt}<br><br>
+                        This is a detailed view of the insight. In a real implementation, this would contain the full article content, 
+                        detailed analysis, charts, and additional resources related to "${insight.title}".
+                    </p>
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button onclick="window.location.href='#'" style="padding: 0.75rem 1.5rem; background: var(--primary-gradient); color: white; border: none; border-radius: var(--radius-md); cursor: pointer;">
+                            Read Full Article
+                        </button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="padding: 0.75rem 1.5rem; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer;">
+                            Close
+                        </button>
+                    </div>
+                `;
+
+                overlay.appendChild(modal);
+                document.body.appendChild(overlay);
+
+                // Trigger animations
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                    modal.style.transform = 'translateY(0)';
+                }, 10);
+
+                // Close on overlay click
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        overlay.remove();
+                    }
+                });
+            }
+        }
+
+        // Enhanced newsletter subscription with animations
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+
+            const emailInput = document.getElementById('newsletterEmail');
+            const email = emailInput.value.trim();
+            const newsletterForm = document.getElementById('newsletterForm');
+            const successAnimation = document.getElementById('successAnimation');
+
+            if (!email || !email.includes('@')) {
+                // Shake animation for invalid email
+                emailInput.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    emailInput.style.animation = '';
+                }, 500);
+
+                // Show error message
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Disable inputs during animation
+            emailInput.disabled = true;
+            event.target.disabled = true;
+
+            // Show loading animation
+            event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+
+            // Simulate API call
+            setTimeout(() => {
+                // Hide form and show success animation
+                newsletterForm.style.display = 'none';
+                successAnimation.style.display = 'block';
+
+                // Auto-hide success animation after 3 seconds
+                setTimeout(() => {
+                    successAnimation.style.display = 'none';
+                    newsletterForm.style.display = 'flex';
+                    emailInput.value = '';
+                    emailInput.disabled = false;
+                    event.target.disabled = false;
+                    event.target.innerHTML = '<span>Subscribe Now</span><i class="fas fa-paper-plane"></i>';
+
+                    // Show success notification
+                    showNotification(`Successfully subscribed ${email} to our newsletter!`, 'success');
+                }, 3000);
+
+                // Send confetti animation
+                createConfetti();
+
+            }, 1500);
+        }
+        // Create confetti animation
+        function createConfetti() {
+            const confettiCount = 100;
+            const colors = ['#667eea', '#764ba2', '#4fd1c5', '#ed8936', '#f093fb'];
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                    top: -20px;
+                    left: ${Math.random() * 100}vw;
+                    opacity: 0.8;
+                    z-index: 1000;
+                    pointer-events: none;
+                `;
+
+                document.body.appendChild(confetti);
+
+                // Animate confetti
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                });
+
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--success)' : 'var(--danger)'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-lg);
+                z-index: 2000;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                max-width: 400px;
+            `;
+
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+            `;
+
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            const searchInput = document.getElementById('searchInsights');
+            searchInput.addEventListener('input', handleSearchInput);
+
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    filterInsights();
+                });
+            });
+
+            const chartFilters = document.querySelectorAll('.chart-filter');
+            chartFilters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    chartFilters.forEach(f => f.classList.remove('active'));
+                    filter.classList.add('active');
+                    const region = filter.getAttribute('data-region');
+                    initializeSalaryChart(region);
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Scroll animations
+            setupScrollAnimations();
+        }
+
+        // Handle search input
+        function handleSearchInput(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            filterInsights();
+        }
+
+        // Filter insights based on category and search term
+        function filterInsights() {
+            const searchTerm = document.getElementById('searchInsights').value.toLowerCase();
+            const activeCategory = document.querySelector('.category-tab.active').getAttribute('data-category');
+
+            const insightCards = document.querySelectorAll('.insight-card');
+            let visibleCount = 0;
+
+            insightCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('.insight-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.insight-excerpt').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.insight-tag')).map(tag => tag.textContent.toLowerCase());
+
+                const matchesSearch = searchTerm === '' ||
+                    title.includes(searchTerm) ||
+                    excerpt.includes(searchTerm) ||
+                    tags.some(tag => tag.includes(searchTerm));
+
+                const matchesCategory = activeCategory === 'all' || category === activeCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'flex';
+                    card.style.animation = `fadeInUp 0.4s ease-out ${visibleCount * 0.05}s both`;
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Setup scroll animations
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('.trends-section, .salary-section, .resources-section, .newsletter-section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Open insight detail
+        function openInsightDetail(id) {
+            const insight = insightsData.find(i => i.id === id);
+            if (insight) {
+                // Create modal-like overlay
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    padding: 2rem;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    backdrop-filter: blur(10px);
+                `;
+
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    background: var(--glass-bg);
+                    backdrop-filter: blur(30px);
+                    border-radius: var(--radius-xl);
+                    max-width: 900px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    padding: 3rem;
+                    transform: translateY(40px);
+                    transition: transform 0.4s ease;
+                    border: 1px solid var(--glass-border);
+                    box-shadow: var(--shadow-xl);
+                `;
+
+                modal.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 2rem;">
+                        <h2 style="font-size: 2.5rem; color: var(--text-primary); margin: 0; font-family: 'Poppins', sans-serif; line-height: 1.3;">${insight.title}</h2>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background: none; border: none; font-size: 2rem; color: var(--text-secondary); cursor: pointer; transition: var(--transition);">×</button>
+                    </div>
+                    <div style="display: flex; gap: 2rem; margin-bottom: 2.5rem; color: var(--text-secondary); flex-wrap: wrap;">
+                        <span style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-user"></i> ${insight.author}</span>
+                        <span style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-calendar"></i> ${insight.date}</span>
+                        <span style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-clock"></i> ${insight.readTime}</span>
+                        <span style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-eye"></i> ${insight.views} views</span>
+                    </div>
+                    <img src="${insight.image}" alt="${insight.title}" style="width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 2.5rem; box-shadow: var(--shadow-md);">
+                    <div style="color: var(--text-primary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 2.5rem;">
+                        <p style="font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 2rem;">${insight.excerpt}</p>
+                        <h3 style="font-size: 1.8rem; margin: 2rem 0 1rem; color: var(--text-primary); font-family: 'Poppins', sans-serif;">Full Analysis</h3>
+                        <p>This is a detailed view of the insight. In a real implementation, this would contain the full article content, detailed analysis, charts, and additional resources related to "${insight.title}".</p>
+                        <p>The industry is rapidly evolving with new technologies and methodologies. Companies that adapt to these changes will thrive in the coming years. This insight provides actionable strategies for professionals looking to advance their careers.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;">Key industry trends to watch</li>
+                            <li style="margin-bottom: 0.5rem;">Skills that are in high demand</li>
+                            <li style="margin-bottom: 0.5rem;">Salary projections for 2025-2026</li>
+                            <li>Career advancement strategies</li>
+                        </ul>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 2.5rem;">
+                        <button onclick="window.location.href='#'" style="padding: 1rem 2rem; background: var(--primary-gradient); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; transition: var(--transition);">
+                            <i class="fas fa-book"></i> Read Full Article
+                        </button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="padding: 1rem 2rem; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; font-weight: 600; transition: var(--transition);">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                `;
+
+                overlay.appendChild(modal);
+                document.body.appendChild(overlay);
+
+                // Trigger animations
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                    modal.style.transform = 'translateY(0)';
+                }, 10);
+
+                // Close on overlay click
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        overlay.style.opacity = '0';
+                        modal.style.transform = 'translateY(40px)';
+                        setTimeout(() => overlay.remove(), 300);
+                    }
+                });
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set active nav link
+            setActiveNavLink();
+
+            // Generate insight cards
+            generateInsightCards();
+
+            // Initialize salary chart
+            initializeSalaryChart('global');
+
+            // Setup experience slider
+            updateExperienceSlider();
+
+            // Setup event listeners
+            setupEventListeners();
+        });
+    </script>
+</body>
+
+</html>

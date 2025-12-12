@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobBridge Events</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="header_footer.css">
+
+    <!-- Logo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        /* ========================================
+           ULTIMATE PERFECT EVENTS PAGE
+        ======================================== */
+        :root {
+            /* Light Mode Colors */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+
+            /* Gradient Orb Colors */
+            --orb-1: rgba(102, 126, 234, 0.3);
+            --orb-2: rgba(118, 75, 162, 0.3);
+            --orb-3: rgba(240, 147, 251, 0.3);
+        }
+
+        /* Dark Mode Colors */
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --border-color: rgba(139, 92, 246, 0.2);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 20px 60px rgba(167, 139, 250, 0.3);
+
+            /* Darker gradient orbs for dark mode */
+            --orb-1: rgba(76, 29, 149, 0.4);
+            --orb-2: rgba(91, 33, 182, 0.4);
+            --orb-3: rgba(124, 58, 237, 0.4);
+        }
+
+        /* ========================================
+           ENHANCED HERO SECTION WITH ORBS
+        ======================================== */
+        .events-hero {
+            min-height: 75vh;
+            padding-top: 140px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.05) 0%, 
+                rgba(118, 75, 162, 0.05) 50%,
+                rgba(240, 147, 251, 0.03) 100%);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 25s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            top: 10%;
+            left: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--orb-1) 0%, transparent 70%);
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            top: 50%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--orb-2) 0%, transparent 70%);
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            bottom: 10%;
+            left: 40%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--orb-3) 0%, transparent 70%);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            font-weight: 400;
+            padding: 1.8rem 2rem;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] .page-subtitle {
+            background: rgba(26, 26, 46, 0.6);
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 1rem 2.2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        [data-theme="dark"] .hero-btn-secondary {
+            background: rgba(30, 30, 50, 0.8);
+            color: #a78bfa;
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .hero-btn-secondary:hover {
+            transform: translateY(-3px);
+            border-color: #667eea;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Stats */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+            padding: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ========================================
+           PERFECT EVENTS CONTAINER
+        ======================================== */
+        .events-container {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 4rem 0 3rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+        }
+
+        /* ========================================
+           BIGGER EVENT CARDS WITH VISIBLE DATES
+        ======================================== */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            padding: 1rem;
+        }
+
+        /* Bigger Event Card - 650px height */
+        .event-card {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border-color);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 650px; /* Increased height for better visualization */
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+            z-index: 2;
+        }
+
+        /* Poster Container */
+        .poster-container {
+            height: 240px; /* Taller poster */
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .poster-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .event-card:hover .poster-container img {
+            transform: scale(1.1);
+        }
+
+        .event-type-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .livestream-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .webinar-badge {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Enhanced Card Content Area */
+        .card-content {
+            padding: 2rem; /* More padding */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-height: 410px; /* More space for content */
+        }
+
+        .event-title {
+            font-size: 1.5rem; /* Larger font */
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+            min-height: 4.4rem; /* More height for title */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Horizontal Event Meta - WITH DATE */
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem; /* Slightly larger */
+            white-space: nowrap;
+        }
+
+        .meta-item i {
+            color: #667eea;
+            font-size: 1.1rem;
+            min-width: 24px;
+        }
+
+        /* Enhanced Tags */
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 1.8rem; /* More space */
+        }
+
+        .event-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .location-tag {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            border: 1px solid rgba(67, 233, 123, 0.3);
+        }
+
+        .online-tag {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+            border: 1px solid rgba(168, 237, 234, 0.3);
+        }
+
+        .region-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--text-primary);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .event-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Bigger Event Description */
+        .event-description {
+            color: var(--text-secondary);
+            font-size: 1rem; /* Larger font */
+            line-height: 1.7; /* Better line height */
+            margin-bottom: 2rem; /* More space */
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* Show more lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            opacity: 0.9;
+            padding-right: 0.5rem;
+        }
+
+        /* Enhanced Card Footer - BIGGER with CLEAR DATE */
+        .card-footer {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.08) 0%, 
+                rgba(118, 75, 162, 0.08) 100%);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 24px 24px;
+            margin-top: auto;
+            gap: 1.5rem;
+            min-height: 80px; /* Minimum height for footer */
+        }
+
+        [data-theme="dark"] .card-footer {
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.15) 0%, 
+                rgba(118, 75, 162, 0.15) 100%);
+            border-top-color: rgba(167, 139, 250, 0.15);
+        }
+
+        /* Bigger and Clearer Date Display */
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem; /* More gap */
+            min-width: 140px; /* Wider date area */
+        }
+
+        .date-icon {
+            width: 65px; /* Bigger icon */
+            height: 65px;
+            background: var(--primary-gradient);
+            border-radius: 15px; /* Rounded corners */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900; /* Bolder */
+            line-height: 1;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4); /* More shadow */
+        }
+
+        .date-icon .month {
+            font-size: 0.8rem; /* Larger month */
+            font-weight: 800; /* Bolder */
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .date-icon .day {
+            font-size: 1.5rem; /* Much larger day */
+            margin-top: 3px;
+        }
+
+        .date-text {
+            font-size: 1rem; /* Larger text */
+            color: var(--text-primary);
+            font-weight: 800; /* Bolder */
+        }
+
+        .date-text .full-date {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .date-text .time {
+            display: block;
+            font-size: 0.9rem; /* Larger time */
+            color: var(--text-secondary);
+            font-weight: 700; /* Bolder */
+            margin-top: 2px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .register-btn {
+            padding: 0.9rem 2rem; /* Bigger button */
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 800; /* Bolder */
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 1rem; /* Larger font */
+            cursor: pointer;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); /* More shadow */
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        /* ========================================
+           MODAL STYLES
+        ======================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .auth-modal {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            border: 1px solid var(--border-color);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--text-primary);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.2rem;
+            color: white;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .modal-text {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .modal-btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .modal-btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .modal-btn-secondary:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+        @media (max-width: 1200px) {
+            .events-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 3.2rem;
+            }
+            
+            .events-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 2rem;
+            }
+            
+            .event-card {
+                height: 630px; /* Slightly smaller on tablets */
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .date-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .date-icon .day {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .events-hero {
+                min-height: 70vh;
+                padding-top: 120px;
+            }
+            
+            .page-title {
+                font-size: 2.6rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.1rem;
+                padding: 1.5rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .hero-stats {
+                gap: 3rem;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin: 3rem 0 2rem;
+            }
+            
+            .event-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-btn {
+                width: 100%;
+            }
+            
+            .event-card {
+                height: 620px; /* Adjust for mobile */
+            }
+            
+            .card-footer {
+                flex-direction: column;
+                gap: 1.2rem;
+                align-items: stretch;
+                padding: 1.5rem;
+            }
+            
+            .event-date {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .register-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-stats {
+                gap: 2rem;
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                flex: 0 0 100%;
+            }
+            
+            .event-card {
+                height: 600px; /* Slightly smaller for phones */
+            }
+            
+            .card-content {
+                padding: 1.5rem;
+            }
+            
+            .date-icon {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .date-icon .day {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-bridge"></i>
+                    </div>
+                    <span class="logo-text">JobBridge</span>
+                </a>
+
+                <div class="d-none d-lg-flex gap-4">
+                    <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                    <a href="find_talent.html" class="nav-link">Find Talent</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="events.html" class="nav-link active">Events</a>
+                    <a href="About.html" class="nav-link">About Us</a>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="bi bi-moon-fill" id="themeIcon"></i>
+                    </button>
+
+                    <div class="d-none d-md-flex gap-2">
+                        <button onclick="sign()" class="btn-shiny btn-shiny-secondary">Sign In</button>
+                        <button onclick="sign()" class="btn-shiny btn-shiny-primary">Get Started</button>
+                    </div>
+
+                    <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                        <i class="bi bi-list" style="font-size: 1.5rem; color: var(--text-primary);"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" style="background: var(--bg-primary);">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" style="color: var(--text-primary);">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex flex-column gap-3">
+                <a href="find_jobs.html" class="nav-link">Find Jobs</a>
+                <a href="find_talent.html" class="nav-link">Find Talent</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="events.html" class="nav-link active">Events</a>
+                <a href="About.html" class="nav-link">About Us</a>
+                <hr>
+
+                <button onclick="sign()" class="btn-shiny btn-shiny-primary w-100">
+                    Get Started
+                </button>
+
+                <script>
+                    function sign() {
+                        window.location.href = "get_started.html";
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Hero Section with Gradient Orbs -->
+    <section class="events-hero">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10 col-xl-8 text-center hero-content">
+                    <h1 class="page-title animate__animated animate__fadeInUp">
+                        Elevate Your Career with Exclusive Events
+                    </h1>
+                    <p class="page-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                        Join industry leaders in premium webinars, workshops, and networking sessions. 
+                        Gain valuable insights, build connections, and accelerate your professional growth with JobBridge.
+                    </p>
+                    <div class="hero-cta animate__animated animate__fadeInUp animate__delay-2s">
+                        <button class="hero-btn hero-btn-primary" onclick="scrollToEvents()">
+                            <i class="bi bi-calendar-event me-2"></i>Explore All Events
+                        </button>
+                        <button class="hero-btn hero-btn-secondary" onclick="showNotification('Stay tuned for upcoming premium events!')">
+                            <i class="bi bi-star me-2"></i>Premium Access
+                        </button>
+                    </div>
+                    
+                    <div class="hero-stats animate__animated animate__fadeIn animate__delay-3s">
+                        <div class="stat-item">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Upcoming Events</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5K+</div>
+                            <div class="stat-label">Active Members</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Satisfaction Rate</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Expert Speakers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perfect Events Container -->
+    <section class="events-container" id="eventsContainer">
+        <div class="container">
+            <!-- Featured Events -->
+            <h2 class="section-title">Featured Events</h2>
+            <div class="events-grid" id="featuredEvents">
+                <!-- Cards populated by JavaScript -->
+            </div>
+
+            <!-- Upcoming Events -->
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-grid" id="upcomingEvents">
+                <!-- Cards populated by JavaScript -->
+            </div>
+
+            <!-- Workshops -->
+            <h2 class="section-title">Special Workshops</h2>
+            <div class="events-grid" id="workshopEvents">
+                <!-- Cards populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="registrationModal">
+        <div class="auth-modal">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="bi bi-x"></i>
+            </button>
+            <div class="modal-icon">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <h3 class="modal-title">Join to Register</h3>
+            <p class="modal-text">
+                To register for this event, please sign in to your JobBridge account. 
+                Don't have an account yet? Create one in seconds!
+            </p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-primary" onclick="redirectToSignIn()">
+                    <i class="bi bi-box-arrow-in-right"></i> Sign In
+                </button>
+                <button class="modal-btn modal-btn-secondary" onclick="redirectToSignUp()">
+                    <i class="bi bi-person-plus"></i> Create Account
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <a href="#" style="text-decoration: none">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <i class="fas fa-bridge"></i>
+                            </div>
+                            <span class="footer-logo-text">JobBridge</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">
+                        Connecting talented professionals with amazing opportunities worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://x.com/" class="social-link"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/mohammadmahdimonsur?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://facebook.com/" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="https://github.com/mohammadmahdimonsur" class="social-link"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Clients</h3>
+                    <ul class="footer-links">
+                        <li><a href="post_a_job.html"><i class="bi bi-chevron-right"></i>Post a Job</a></li>
+                        <li><a href="browse_talent.html"><i class="bi bi-chevron-right"></i>Browse Talent</a></li>
+                        <li><a href="enterprise_solutions.html"><i class="bi bi-chevron-right"></i>Enterprise Solutions</a></li>
+                        <li><a href="hire_developers.html"><i class="bi bi-chevron-right"></i>Hire Developers</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">For Talents</h3>
+                    <ul class="footer-links">
+                        <li><a href="find_jobs.html"><i class="bi bi-chevron-right"></i>Find Jobs</a></li>
+                        <li><a href="get_started.html"><i class="bi bi-chevron-right"></i>Create Profile</a></li>
+                        <li><a href="career_resources.html"><i class="bi bi-chevron-right"></i>Career Resources</a></li>
+                        <li><a href="skill_tests.html"><i class="bi bi-chevron-right"></i>Skill Tests</a></li>
+                        <li><a href="success_stories.html"><i class="bi bi-chevron-right"></i>Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html"><i class="bi bi-chevron-right"></i>Blog</a></li>
+                        <li><a href="webinars.html"><i class="bi bi-chevron-right"></i>Webinars</a></li>
+                        <li><a href="research_reports.html"><i class="bi bi-chevron-right"></i>Research Reports</a></li>
+                        <li><a href="industry_insights.html"><i class="bi bi-chevron-right"></i>Industry Insights</a></li>
+                        <li><a href="events.html"><i class="bi bi-chevron-right"></i>Events</a></li>
+                    </ul>
+                </div>
+                <!-- New Platform Section -->
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="footer-title">Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="career.html"><i class="bi bi-chevron-right"></i>Career</a></li>
+                        <li><a href="help_center.html"><i class="bi bi-chevron-right"></i>Help Center</a></li>
+                        <li><a href="community.html"><i class="bi bi-chevron-right"></i>Community</a></li>
+                        <li><a href="contact_us.html"><i class="bi bi-chevron-right"></i>Contact Us</a></li>
+                        <li><a href="about.html"><i class="bi bi-chevron-right"></i>About JobBridge</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'light' ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
+        }
+
+        // Event Data - 30 High-Quality Events
+        const eventsData = [
+            // Featured Events (6)
+            {
+                id: 1,
+                title: "AI Revolution Summit 2024: The Future of Work & Careers",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-04-25",
+                time: "10:00 AM EST",
+                speaker: "Dr. Sarah Chen (Google AI Research Lead)",
+                poster: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Join industry pioneers as we explore how artificial intelligence is reshaping careers, creating unprecedented opportunities, and transforming workplace dynamics across every sector. Learn practical strategies to future-proof your career in the age of AI.",
+                tags: ["AI", "Future Tech", "Innovation"],
+                category: "featured"
+            },
+            {
+                id: 2,
+                title: "Tech Leadership Excellence: Executive Masterclass 2024",
+                type: "webinar",
+                location: "inperson",
+                region: "Silicon Valley",
+                date: "2024-04-28",
+                time: "9:00 AM PST",
+                speaker: "Mark Johnson (LinkedIn Leadership Expert)",
+                poster: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Advanced leadership strategies for tech executives navigating digital transformation, leading global distributed teams, and fostering innovation culture in fast-paced environments.",
+                tags: ["Leadership", "Executive", "Strategy"],
+                category: "featured"
+            },
+            {
+                id: 3,
+                title: "Data Science Excellence: From Analysis to Impact",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-02",
+                time: "2:00 PM GMT",
+                speaker: "Dr. Maria Silva (Spotify Principal Data Scientist)",
+                poster: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Cutting-edge data science applications, machine learning innovations, and practical career advancement strategies for data professionals. Real-world case studies from top tech companies.",
+                tags: ["Data Science", "Machine Learning", "Analytics"],
+                category: "featured"
+            },
+            {
+                id: 4,
+                title: "Startup Funding Masterclass: From Idea to Investment",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-05-05",
+                time: "11:00 AM EST",
+                speaker: "David Chen (Sequoia Capital Partner)",
+                poster: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Comprehensive guide to securing venture capital funding. Learn what investors look for, perfect your pitch, and understand funding rounds from industry experts who've funded unicorns.",
+                tags: ["Startup", "Funding", "Entrepreneurship"],
+                category: "featured"
+            },
+            {
+                id: 5,
+                title: "Cybersecurity Leadership Forum 2024",
+                type: "webinar",
+                location: "inperson",
+                region: "Washington DC",
+                date: "2024-05-12",
+                time: "9:00 AM EST",
+                speaker: "Global Security Industry Leaders",
+                poster: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Executive-level security planning, advanced threat intelligence, and defense strategies for modern enterprises facing sophisticated cyber threats in the digital age.",
+                tags: ["Cybersecurity", "Security", "Enterprise"],
+                category: "featured"
+            },
+            {
+                id: 6,
+                title: "Digital Transformation Leadership Summit",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-08",
+                time: "1:00 PM CET",
+                speaker: "Digital Transformation Panel",
+                poster: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1715&q=80",
+                description: "Strategic approaches to digital transformation across industries, organizational change management, and leading digital innovation in traditional companies.",
+                tags: ["Digital", "Transformation", "Innovation"],
+                category: "featured"
+            },
+            // Upcoming Events (12)
+            {
+                id: 7,
+                title: "Remote Work Excellence: Productivity & Balance",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-04-20",
+                time: "2:00 PM EST",
+                speaker: "Remote Work Strategy Experts",
+                poster: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Practical strategies for maximizing productivity, maintaining work-life balance, and fostering team collaboration in distributed remote environments.",
+                tags: ["Remote Work", "Productivity", "Workshop"],
+                category: "upcoming"
+            },
+            {
+                id: 8,
+                title: "UX/UI Design Innovation 2024",
+                type: "webinar",
+                location: "online",
+                region: "Europe",
+                date: "2024-04-24",
+                time: "10:00 AM CET",
+                speaker: "Design System Leaders",
+                poster: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1664&q=80",
+                description: "Modern UX/UI design principles, user research methodologies, and design system implementation for scalable digital products.",
+                tags: ["UX/UI", "Design", "Creative"],
+                category: "upcoming"
+            },
+            {
+                id: 9,
+                title: "Cloud Architecture Excellence Workshop",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-04-30",
+                time: "11:00 AM EST",
+                speaker: "AWS Solution Architects",
+                poster: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1772&q=80",
+                description: "Advanced cloud infrastructure design, microservices architecture, scalability patterns, and best practices for modern cloud-native applications.",
+                tags: ["Cloud", "Architecture", "AWS"],
+                category: "upcoming"
+            },
+            {
+                id: 10,
+                title: "Product Management Mastery Bootcamp",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-03",
+                time: "2:00 PM PST",
+                speaker: "Product Leadership Panel",
+                poster: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Comprehensive product management training covering ideation, validation, development, launch, and scaling strategies with real-world case studies.",
+                tags: ["Product", "Management", "Bootcamp"],
+                category: "upcoming"
+            },
+            {
+                id: 11,
+                title: "Machine Learning Applications Workshop",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-05-06",
+                time: "10:00 AM GMT",
+                speaker: "Machine Learning Researchers",
+                poster: "https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80",
+                description: "Practical machine learning applications across industries including healthcare, finance, and e-commerce with hands-on examples and implementation strategies.",
+                tags: ["Machine Learning", "AI", "Workshop"],
+                category: "upcoming"
+            },
+            {
+                id: 12,
+                title: "DevOps Excellence & CI/CD Implementation",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-09",
+                time: "1:00 PM EST",
+                speaker: "DevOps Engineering Experts",
+                poster: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1774&q=80",
+                description: "Modern DevOps practices, continuous integration and deployment automation, infrastructure as code, and scalability strategies for enterprise systems.",
+                tags: ["DevOps", "CI/CD", "Automation"],
+                category: "upcoming"
+            },
+            {
+                id: 13,
+                title: "Mobile App Development Trends 2024",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-05-11",
+                time: "11:00 AM EST",
+                speaker: "Mobile Development Leaders",
+                poster: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Latest mobile development frameworks, cross-platform solutions, app optimization techniques, and emerging trends in mobile technology.",
+                tags: ["Mobile", "Development", "Trends"],
+                category: "upcoming"
+            },
+            {
+                id: 14,
+                title: "Agile & Scrum Certification Preparation",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-14",
+                time: "2:00 PM GMT",
+                speaker: "Certified Agile Coaches",
+                poster: "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1773&q=80",
+                description: "Comprehensive preparation for Agile and Scrum certification exams including practice tests, scenario analysis, and expert guidance.",
+                tags: ["Agile", "Scrum", "Certification"],
+                category: "upcoming"
+            },
+            {
+                id: 15,
+                title: "Blockchain & Web3 Development Fundamentals",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-05-16",
+                time: "10:00 AM EST",
+                speaker: "Blockchain Development Experts",
+                poster: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Introduction to blockchain technology, smart contract development, decentralized applications, and Web3 ecosystem fundamentals.",
+                tags: ["Blockchain", "Web3", "Development"],
+                category: "upcoming"
+            },
+            {
+                id: 16,
+                title: "Digital Marketing Innovation Summit 2024",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-18",
+                time: "1:00 PM EST",
+                speaker: "Marketing Industry Leaders",
+                poster: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1715&q=80",
+                description: "Latest digital marketing trends, SEO optimization strategies, social media marketing techniques, and growth hacking for modern businesses.",
+                tags: ["Marketing", "Digital", "Innovation"],
+                category: "upcoming"
+            },
+            {
+                id: 17,
+                title: "Leadership Development Intensive Workshop",
+                type: "webinar",
+                location: "inperson",
+                region: "London",
+                date: "2024-05-20",
+                time: "9:00 AM GMT",
+                speaker: "Executive Leadership Coaches",
+                poster: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1702&q=80",
+                description: "Advanced leadership skills development, team management strategies, executive communication, and strategic decision-making techniques.",
+                tags: ["Leadership", "Management", "Development"],
+                category: "upcoming"
+            },
+            {
+                id: 18,
+                title: "Content Strategy Masterclass 2024",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-22",
+                time: "12:00 PM EST",
+                speaker: "Content Strategy Experts",
+                poster: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80",
+                description: "Comprehensive content creation, distribution strategies, SEO optimization, and audience engagement techniques for digital platforms.",
+                tags: ["Content", "Marketing", "Strategy"],
+                category: "upcoming"
+            },
+            // Workshop Events (12)
+            {
+                id: 19,
+                title: "Advanced JavaScript & Modern Frameworks",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-05-24",
+                time: "10:00 AM EST",
+                speaker: "JavaScript Framework Experts",
+                poster: "https://images.unsplash.com/photo-1526379879527-8559ecfcaec5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Deep dive into advanced JavaScript concepts, modern frameworks like React and Vue, performance optimization, and best practices for enterprise applications.",
+                tags: ["JavaScript", "Web Development", "Workshop"],
+                category: "workshop"
+            },
+            {
+                id: 20,
+                title: "React Native Mobile App Development",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-26",
+                time: "1:00 PM EST",
+                speaker: "React Native Development Team",
+                poster: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Comprehensive guide to building cross-platform mobile applications with React Native, from project setup to app store deployment.",
+                tags: ["React Native", "Mobile", "Development"],
+                category: "workshop"
+            },
+            {
+                id: 21,
+                title: "Python for Data Analysis & Visualization",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-05-28",
+                time: "11:00 AM GMT",
+                speaker: "Data Science Educators",
+                poster: "https://images.unsplash.com/photo-1526379879527-8559ecfcaec5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Hands-on data analysis and visualization workshop using Python libraries including Pandas, NumPy, Matplotlib, and Seaborn for data professionals.",
+                tags: ["Python", "Data Analysis", "Visualization"],
+                category: "workshop"
+            },
+            {
+                id: 22,
+                title: "AWS Cloud Solutions Architecture",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-05-30",
+                time: "2:00 PM EST",
+                speaker: "AWS Certified Architects",
+                poster: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Comprehensive AWS cloud architecture design workshop covering best practices, security considerations, and cost optimization strategies.",
+                tags: ["AWS", "Cloud", "Architecture"],
+                category: "workshop"
+            },
+            {
+                id: 23,
+                title: "UI Animation & Micro-interactions Design",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-06-01",
+                time: "10:00 AM PST",
+                speaker: "UI/UX Animation Experts",
+                poster: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1664&q=80",
+                description: "Creating engaging UI animations, micro-interactions, and motion design principles for modern web and mobile user experiences.",
+                tags: ["UI", "Animation", "Design"],
+                category: "workshop"
+            },
+            {
+                id: 24,
+                title: "Docker & Kubernetes Containerization",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-06-03",
+                time: "1:00 PM GMT",
+                speaker: "Containerization Experts",
+                poster: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Comprehensive containerization and orchestration workshop using Docker and Kubernetes for scalable, cloud-native applications.",
+                tags: ["Docker", "Kubernetes", "Containerization"],
+                category: "workshop"
+            },
+            {
+                id: 25,
+                title: "GraphQL API Design & Implementation",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-06-05",
+                time: "11:00 AM EST",
+                speaker: "API Architecture Experts",
+                poster: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1774&q=80",
+                description: "Designing and implementing efficient GraphQL APIs with Apollo, authentication, authorization, and performance optimization techniques.",
+                tags: ["GraphQL", "API", "Development"],
+                category: "workshop"
+            },
+            {
+                id: 26,
+                title: "TypeScript Development Fundamentals",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-06-07",
+                time: "2:00 PM EST",
+                speaker: "TypeScript Development Team",
+                poster: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Comprehensive TypeScript fundamentals, advanced type system features, and best practices for building scalable applications.",
+                tags: ["TypeScript", "Development", "Workshop"],
+                category: "workshop"
+            },
+            {
+                id: 27,
+                title: "Next.js 14 & Modern Frontend Development",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-06-09",
+                time: "10:00 AM GMT",
+                speaker: "Frontend Architecture Experts",
+                poster: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Building modern web applications with Next.js 14, React, modern frontend tooling, and deployment strategies for production.",
+                tags: ["Next.js", "React", "Frontend"],
+                category: "workshop"
+            },
+            {
+                id: 28,
+                title: "Node.js Backend Architecture Design",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-06-11",
+                time: "1:00 PM EST",
+                speaker: "Backend Engineering Experts",
+                poster: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Designing and building scalable backend services with Node.js, Express, microservices architecture, and database integration.",
+                tags: ["Node.js", "Backend", "Architecture"],
+                category: "workshop"
+            },
+            {
+                id: 29,
+                title: "UI/UX Design Systems Workshop",
+                type: "webinar",
+                location: "online",
+                region: "Global",
+                date: "2024-06-13",
+                time: "11:00 AM PST",
+                speaker: "Design System Architects",
+                poster: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1664&q=80",
+                description: "Creating and maintaining scalable design systems, component libraries, and design tokens for consistent user experiences.",
+                tags: ["Design Systems", "UI/UX", "Scalability"],
+                category: "workshop"
+            },
+            {
+                id: 30,
+                title: "SEO Optimization & Technical SEO Workshop",
+                type: "livestream",
+                location: "online",
+                region: "Global",
+                date: "2024-06-15",
+                time: "2:00 PM GMT",
+                speaker: "SEO Optimization Experts",
+                poster: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1715&q=80",
+                description: "Advanced SEO strategies, technical optimization techniques, content strategy, and analytics for improving search engine rankings.",
+                tags: ["SEO", "Optimization", "Marketing"],
+                category: "workshop"
+            }
+        ];
+
+        // DOM Elements
+        const featuredEventsContainer = document.getElementById('featuredEvents');
+        const upcomingEventsContainer = document.getElementById('upcomingEvents');
+        const workshopEventsContainer = document.getElementById('workshopEvents');
+        const registrationModal = document.getElementById('registrationModal');
+
+        // Initialize events
+        document.addEventListener('DOMContentLoaded', function() {
+            renderEvents();
+            setupEventListeners();
+            initializeAnimations();
+        });
+
+        // Render all events
+        function renderEvents() {
+            // Clear containers
+            featuredEventsContainer.innerHTML = '';
+            upcomingEventsContainer.innerHTML = '';
+            workshopEventsContainer.innerHTML = '';
+            
+            // Categorize events
+            const featuredEvents = eventsData.filter(event => event.category === 'featured');
+            const upcomingEvents = eventsData.filter(event => event.category === 'upcoming');
+            const workshopEvents = eventsData.filter(event => event.category === 'workshop');
+            
+            // Render featured events
+            featuredEvents.forEach((event, index) => {
+                const card = createEventCard(event, index);
+                featuredEventsContainer.appendChild(card);
+            });
+            
+            // Render upcoming events
+            upcomingEvents.forEach((event, index) => {
+                const card = createEventCard(event, index);
+                upcomingEventsContainer.appendChild(card);
+            });
+            
+            // Render workshop events
+            workshopEvents.forEach((event, index) => {
+                const card = createEventCard(event, index);
+                workshopEventsContainer.appendChild(card);
+            });
+            
+            // Add entrance animations
+            animateCards();
+        }
+
+        // Create perfect event card with bigger content area and visible date
+        function createEventCard(event, index) {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            // Format date
+            const eventDate = new Date(event.date);
+            const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            const month = monthNames[eventDate.getMonth()];
+            const day = eventDate.getDate();
+            
+            // Full date string for display
+            const fullDateString = eventDate.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'long', 
+                day: 'numeric',
+                year: 'numeric'
+            });
+            
+            // Determine badge class
+            const badgeClass = event.type === 'livestream' ? 'livestream-badge' : 'webinar-badge';
+            const badgeText = event.type === 'livestream' ? 'LIVE' : 'WEBINAR';
+            
+            // Determine location tag
+            const locationClass = event.location === 'inperson' ? 'location-tag' : 'online-tag';
+            const locationIcon = event.location === 'inperson' ? 'bi-geo-alt' : 'bi-wifi';
+            const locationText = event.location === 'inperson' ? 'In-Person' : 'Virtual';
+            
+            card.innerHTML = `
+                <div class="poster-container">
+                    <img src="${event.poster}" alt="${event.title}" loading="lazy">
+                    <span class="event-type-badge ${badgeClass}">${badgeText}</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="event-title">${event.title}</h3>
+                    
+                    <div class="event-meta">
+                        <div class="meta-item">
+                            <i class="bi bi-person-circle"></i>
+                            <span>${event.speaker}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-clock"></i>
+                            <span>${event.time}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="bi bi-globe"></i>
+                            <span>${event.region}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="event-tags">
+                        <span class="event-tag ${locationClass}"><i class="bi ${locationIcon}"></i> ${locationText}</span>
+                        ${event.tags.slice(0, 2).map(tag => `<span class="event-tag region-tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <p class="event-description">${event.description}</p>
+                    
+                    <div class="card-footer">
+                        <div class="event-date">
+                            <div class="date-icon">
+                                <div class="month">${month}</div>
+                                <div class="day">${day}</div>
+                            </div>
+                            <div class="date-text">
+                                <span class="full-date">${fullDateString}</span>
+                                <span class="time">${event.time}</span>
+                            </div>
+                        </div>
+                        <button class="register-btn" onclick="openRegistrationModal(${event.id})">
+                            <i class="bi bi-calendar-plus"></i> Register Now
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Close modal on overlay click
+            registrationModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && registrationModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Initialize animations
+        function initializeAnimations() {
+            // Add scroll animation for cards
+            window.addEventListener('scroll', animateCards);
+            // Initial animation
+            animateCards();
+        }
+
+        // Animate cards on scroll
+        function animateCards() {
+            const cards = document.querySelectorAll('.event-card');
+            const windowHeight = window.innerHeight;
+            
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                
+                if (cardTop < windowHeight - 100) {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Modal functions
+        function openRegistrationModal(eventId) {
+            registrationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            registrationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function redirectToSignIn() {
+            window.location.href = 'get_started.html?action=signin';
+        }
+
+        function redirectToSignUp() {
+            window.location.href = 'get_started.html?action=signup';
+        }
+
+        // Utility functions
+        function scrollToEvents() {
+            document.getElementById('eventsContainer').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'position-fixed top-0 start-50 translate-middle-x p-3';
+            notification.style.zIndex = '2000';
+            notification.style.marginTop = '80px';
+            notification.innerHTML = `
+                <div class="alert alert-info alert-dismissible fade show" role="alert" 
+                     style="background: var(--primary-gradient); 
+                            color: white; border: none; border-radius: 12px; padding: 1rem 1.5rem;">
+                    <i class="bi bi-info-circle me-2"></i> ${message}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
